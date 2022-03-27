@@ -37,7 +37,7 @@ In addition, this project will produce boilerplate for my future projects
 - [RN Async Storage](https://github.com/react-native-async-storage/async-storage/)
 - [React Query](https://react-query.tanstack.com/)
 - [React Hook Form](https://react-hook-form.com/)
-
+- [Axios HTTP Client](https://github.com/axios/axios)
 
 
 
