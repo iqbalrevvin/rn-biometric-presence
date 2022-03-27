@@ -4,10 +4,10 @@ import styles from './CText.style';
 import Configs from './CText.config';
 
 const CText = ({
-    children, style, bold, color, size, numberOfLine,
+    children, style, bold, semiBold, color, size, numberOfLine,
 }) => (
     <Text
-        style={[style, styles.textSection(bold, color, size)]}
+        style={[style, styles.textSection(bold, semiBold, color, size)]}
         numberOfLines={numberOfLine}>
         {children}
     </Text>
