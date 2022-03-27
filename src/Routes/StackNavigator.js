@@ -45,6 +45,7 @@ const Stack = createStackNavigator();
 
 const StackNavigator = () => (
   <Stack.Navigator screenOptions={screenOptionsConfig} animation={true}>
+    <Stack.Screen name={Screen.SPLASH_SCREEN.name} component={Screen.SPLASH_SCREEN.component} />
     <Stack.Screen name={Screen.WELCOME_SCREEN.name} component={Screen.WELCOME_SCREEN.component} />
     <Stack.Screen name={Screen.LOGIN_SCREEN.name} component={Screen.LOGIN_SCREEN.component} />
     <Stack.Screen name={Screen.INDEX_SCREEN.name} component={Screen.INDEX_SCREEN.component} />
