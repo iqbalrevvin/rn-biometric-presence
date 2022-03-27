@@ -30,6 +30,23 @@
 		443F6C9E42EE489B95BACD00 /* Octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0B5BE2E1A2A9486E8AA92EFE /* Octicons.ttf */; };
 		75820EF59D1D46028310690A /* SimpleLineIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F2BB062D913C440CBBD86AD7 /* SimpleLineIcons.ttf */; };
 		DDF3AE92E77643A7AE3A5AE5 /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 64760096C2C94C76BD5C7966 /* Zocial.ttf */; };
+		D5C95E5132624F53AACB3057 /* Muli-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 20AA79E0370148E2BEA35EC1 /* Muli-Bold.ttf */; };
+		33B7836F6AF247DBB22804F6 /* Muli-Bold.woff in Resources */ = {isa = PBXBuildFile; fileRef = 1201B487A19F4AC1A3D7A356 /* Muli-Bold.woff */; };
+		33F238DA9C2346E7A51279F2 /* Muli-Bold.woff2 in Resources */ = {isa = PBXBuildFile; fileRef = 341CF1072AC444AC9B6E8C9D /* Muli-Bold.woff2 */; };
+		AED7DDD31A4F4B24BD9D5BF6 /* Muli-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3D7B71EF36CF4B52964C258E /* Muli-BoldItalic.ttf */; };
+		DB2EC126837A4222816FEEFA /* Muli-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F63E893509F84DCFB06D8B62 /* Muli-Light.ttf */; };
+		A4CCE0BF51964F12BA57F396 /* Muli-Light.woff in Resources */ = {isa = PBXBuildFile; fileRef = E9E35D42F77041B8848348B3 /* Muli-Light.woff */; };
+		84FA6104F9D3483A9B46F544 /* Muli-Light.woff2 in Resources */ = {isa = PBXBuildFile; fileRef = D8EF2F1D62574C7781B0E72D /* Muli-Light.woff2 */; };
+		71A59049723C4C03A1DE70FC /* Muli-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0F2DB74AE56F4E20B1BBFB8D /* Muli-Medium.ttf */; };
+		39DBA044591B48C3956E3135 /* Muli-Medium.woff in Resources */ = {isa = PBXBuildFile; fileRef = F0B27719D9094D68A03F525F /* Muli-Medium.woff */; };
+		A13ECC378D3E409F83985866 /* Muli-Medium.woff2 in Resources */ = {isa = PBXBuildFile; fileRef = DFD5845EEBD44F38AA2355A1 /* Muli-Medium.woff2 */; };
+		7278FF9094D945519187E1A0 /* Muli-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 32ED7465E177478A875498E2 /* Muli-MediumItalic.ttf */; };
+		B92C35124E5046D18B0E0F16 /* Muli-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C54F3E28C6E941348D467590 /* Muli-Regular.ttf */; };
+		FD483B552CCB43AC8815A7B7 /* Muli-Regular.woff in Resources */ = {isa = PBXBuildFile; fileRef = 746B4E29596641BDBBA3A515 /* Muli-Regular.woff */; };
+		F22A219CB187476299CDD532 /* Muli-Regular.woff2 in Resources */ = {isa = PBXBuildFile; fileRef = 2771282D851C40B6ADED7E74 /* Muli-Regular.woff2 */; };
+		1763098771FF477E8A57FCFD /* Muli-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A54A28A3502049D6A9F251C2 /* Muli-SemiBold.ttf */; };
+		200C917507A240ED972FAF67 /* Muli-SemiBold.woff in Resources */ = {isa = PBXBuildFile; fileRef = 759C972F677F414F94584F6A /* Muli-SemiBold.woff */; };
+		391F488B8C3A48EDBE5B9C32 /* Muli-SemiBold.woff2 in Resources */ = {isa = PBXBuildFile; fileRef = DA4668EE0017430D9CD9CDB2 /* Muli-SemiBold.woff2 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -76,6 +93,23 @@
 		0B5BE2E1A2A9486E8AA92EFE /* Octicons.ttf */ = {isa = PBXFileReference; name = "Octicons.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/Octicons.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		F2BB062D913C440CBBD86AD7 /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; name = "SimpleLineIcons.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/SimpleLineIcons.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		64760096C2C94C76BD5C7966 /* Zocial.ttf */ = {isa = PBXFileReference; name = "Zocial.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/Zocial.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		20AA79E0370148E2BEA35EC1 /* Muli-Bold.ttf */ = {isa = PBXFileReference; name = "Muli-Bold.ttf"; path = "../src/Assets/Fonts/Muli-Bold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		1201B487A19F4AC1A3D7A356 /* Muli-Bold.woff */ = {isa = PBXFileReference; name = "Muli-Bold.woff"; path = "../src/Assets/Fonts/Muli-Bold.woff"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		341CF1072AC444AC9B6E8C9D /* Muli-Bold.woff2 */ = {isa = PBXFileReference; name = "Muli-Bold.woff2"; path = "../src/Assets/Fonts/Muli-Bold.woff2"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		3D7B71EF36CF4B52964C258E /* Muli-BoldItalic.ttf */ = {isa = PBXFileReference; name = "Muli-BoldItalic.ttf"; path = "../src/Assets/Fonts/Muli-BoldItalic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		F63E893509F84DCFB06D8B62 /* Muli-Light.ttf */ = {isa = PBXFileReference; name = "Muli-Light.ttf"; path = "../src/Assets/Fonts/Muli-Light.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		E9E35D42F77041B8848348B3 /* Muli-Light.woff */ = {isa = PBXFileReference; name = "Muli-Light.woff"; path = "../src/Assets/Fonts/Muli-Light.woff"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		D8EF2F1D62574C7781B0E72D /* Muli-Light.woff2 */ = {isa = PBXFileReference; name = "Muli-Light.woff2"; path = "../src/Assets/Fonts/Muli-Light.woff2"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		0F2DB74AE56F4E20B1BBFB8D /* Muli-Medium.ttf */ = {isa = PBXFileReference; name = "Muli-Medium.ttf"; path = "../src/Assets/Fonts/Muli-Medium.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		F0B27719D9094D68A03F525F /* Muli-Medium.woff */ = {isa = PBXFileReference; name = "Muli-Medium.woff"; path = "../src/Assets/Fonts/Muli-Medium.woff"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		DFD5845EEBD44F38AA2355A1 /* Muli-Medium.woff2 */ = {isa = PBXFileReference; name = "Muli-Medium.woff2"; path = "../src/Assets/Fonts/Muli-Medium.woff2"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		32ED7465E177478A875498E2 /* Muli-MediumItalic.ttf */ = {isa = PBXFileReference; name = "Muli-MediumItalic.ttf"; path = "../src/Assets/Fonts/Muli-MediumItalic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		C54F3E28C6E941348D467590 /* Muli-Regular.ttf */ = {isa = PBXFileReference; name = "Muli-Regular.ttf"; path = "../src/Assets/Fonts/Muli-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		746B4E29596641BDBBA3A515 /* Muli-Regular.woff */ = {isa = PBXFileReference; name = "Muli-Regular.woff"; path = "../src/Assets/Fonts/Muli-Regular.woff"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		2771282D851C40B6ADED7E74 /* Muli-Regular.woff2 */ = {isa = PBXFileReference; name = "Muli-Regular.woff2"; path = "../src/Assets/Fonts/Muli-Regular.woff2"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		A54A28A3502049D6A9F251C2 /* Muli-SemiBold.ttf */ = {isa = PBXFileReference; name = "Muli-SemiBold.ttf"; path = "../src/Assets/Fonts/Muli-SemiBold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		759C972F677F414F94584F6A /* Muli-SemiBold.woff */ = {isa = PBXFileReference; name = "Muli-SemiBold.woff"; path = "../src/Assets/Fonts/Muli-SemiBold.woff"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		DA4668EE0017430D9CD9CDB2 /* Muli-SemiBold.woff2 */ = {isa = PBXFileReference; name = "Muli-SemiBold.woff2"; path = "../src/Assets/Fonts/Muli-SemiBold.woff2"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -201,6 +235,23 @@
 				0B5BE2E1A2A9486E8AA92EFE /* Octicons.ttf */,
 				F2BB062D913C440CBBD86AD7 /* SimpleLineIcons.ttf */,
 				64760096C2C94C76BD5C7966 /* Zocial.ttf */,
+				20AA79E0370148E2BEA35EC1 /* Muli-Bold.ttf */,
+				1201B487A19F4AC1A3D7A356 /* Muli-Bold.woff */,
+				341CF1072AC444AC9B6E8C9D /* Muli-Bold.woff2 */,
+				3D7B71EF36CF4B52964C258E /* Muli-BoldItalic.ttf */,
+				F63E893509F84DCFB06D8B62 /* Muli-Light.ttf */,
+				E9E35D42F77041B8848348B3 /* Muli-Light.woff */,
+				D8EF2F1D62574C7781B0E72D /* Muli-Light.woff2 */,
+				0F2DB74AE56F4E20B1BBFB8D /* Muli-Medium.ttf */,
+				F0B27719D9094D68A03F525F /* Muli-Medium.woff */,
+				DFD5845EEBD44F38AA2355A1 /* Muli-Medium.woff2 */,
+				32ED7465E177478A875498E2 /* Muli-MediumItalic.ttf */,
+				C54F3E28C6E941348D467590 /* Muli-Regular.ttf */,
+				746B4E29596641BDBBA3A515 /* Muli-Regular.woff */,
+				2771282D851C40B6ADED7E74 /* Muli-Regular.woff2 */,
+				A54A28A3502049D6A9F251C2 /* Muli-SemiBold.ttf */,
+				759C972F677F414F94584F6A /* Muli-SemiBold.woff */,
+				DA4668EE0017430D9CD9CDB2 /* Muli-SemiBold.woff2 */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -318,6 +369,23 @@
 				443F6C9E42EE489B95BACD00 /* Octicons.ttf in Resources */,
 				75820EF59D1D46028310690A /* SimpleLineIcons.ttf in Resources */,
 				DDF3AE92E77643A7AE3A5AE5 /* Zocial.ttf in Resources */,
+				D5C95E5132624F53AACB3057 /* Muli-Bold.ttf in Resources */,
+				33B7836F6AF247DBB22804F6 /* Muli-Bold.woff in Resources */,
+				33F238DA9C2346E7A51279F2 /* Muli-Bold.woff2 in Resources */,
+				AED7DDD31A4F4B24BD9D5BF6 /* Muli-BoldItalic.ttf in Resources */,
+				DB2EC126837A4222816FEEFA /* Muli-Light.ttf in Resources */,
+				A4CCE0BF51964F12BA57F396 /* Muli-Light.woff in Resources */,
+				84FA6104F9D3483A9B46F544 /* Muli-Light.woff2 in Resources */,
+				71A59049723C4C03A1DE70FC /* Muli-Medium.ttf in Resources */,
+				39DBA044591B48C3956E3135 /* Muli-Medium.woff in Resources */,
+				A13ECC378D3E409F83985866 /* Muli-Medium.woff2 in Resources */,
+				7278FF9094D945519187E1A0 /* Muli-MediumItalic.ttf in Resources */,
+				B92C35124E5046D18B0E0F16 /* Muli-Regular.ttf in Resources */,
+				FD483B552CCB43AC8815A7B7 /* Muli-Regular.woff in Resources */,
+				F22A219CB187476299CDD532 /* Muli-Regular.woff2 in Resources */,
+				1763098771FF477E8A57FCFD /* Muli-SemiBold.ttf in Resources */,
+				200C917507A240ED972FAF67 /* Muli-SemiBold.woff in Resources */,
+				391F488B8C3A48EDBE5B9C32 /* Muli-SemiBold.woff2 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
