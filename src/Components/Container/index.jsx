@@ -1,20 +1,33 @@
 import React, { Fragment } from 'react';
-import { StatusBar, View } from 'react-native';
+import { ScrollView, StatusBar, View } from 'react-native';
 import PropTypes from 'prop-types';
 import styles from './Container.styles';
 import CLoadingOverlay from '../Loadings/CLoadingOverlay';
 
 const Container = ({
-    children, style, backgroundColor, withOverlayLoading, loadingText, barColor, barType,
-}) => (
-    <Fragment>
-        <StatusBar backgroundColor={barColor} barStyle={barType} />
-        <View style={[style, styles.container(backgroundColor)]}>
-            { withOverlayLoading && <CLoadingOverlay loadingText={loadingText} /> }
-            {children}
-        </View>
-    </Fragment>
-);
+    children,
+    style,
+    backgroundColor,
+    withOverlayLoading,
+    loadingText,
+    barColor,
+    barType,
+    scrollView,
+}) => {
+    const renderContent = () => {
+        if (scrollView) return <ScrollView>{children}</ScrollView>;
+        return children;
+    };
+    return (
+        <Fragment>
+            <StatusBar backgroundColor={barColor} barStyle={barType} />
+            <View style={[style, styles.container(backgroundColor)]}>
+                {withOverlayLoading && <CLoadingOverlay loadingText={loadingText} />}
+                {renderContent()}
+            </View>
+        </Fragment>
+    );
+};
 
 export default Container;
 
@@ -26,6 +39,7 @@ Container.propTypes = {
     loadingText: PropTypes.string,
     barColor: PropTypes.string,
     barType: PropTypes.string,
+    scrollView: PropTypes.bool,
 };
 
 Container.defaultProps = {
@@ -34,4 +48,5 @@ Container.defaultProps = {
     loadingText: 'Loading...',
     barColor: 'white',
     barType: 'dark-content',
+    scrollView: false,
 };

@@ -1,4 +1,4 @@
-import { API_URL, API_KEY } from '@env';
+import { API_URL, API_KEY } from 'react-native-dotenv';
 
 const API = {
     DEV: { API_URL, API_KEY },

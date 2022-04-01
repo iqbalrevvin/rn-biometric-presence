@@ -1,5 +1,5 @@
 /* eslint-disable import/extensions */
-import React, { useState } from 'react';
+import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { loginAction } from '../../Services/Redux/Actions/AuthAction';
 import RenderSplashScreen from './RenderSplashScreen';

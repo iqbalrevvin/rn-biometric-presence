@@ -18,8 +18,8 @@ const RenderSplashScreen = (props) => {
     useEffect(() => {
         setTimeout(() => {
             if (loggedIn && token) navigation.navigate(Screen.INDEX_SCREEN.name);
-            else navigation.navigate(Screen.WELCOME_SCREEN.name);
-        }, 5000);
+            else navigation.navigate(Screen.LOGIN_SCREEN.name);
+        }, 2500);
     }, []);
 
     return (
