@@ -1,6 +1,6 @@
 export default {
     contentOverlay: {
-        backgroundColor: 'white',
+        backgroundColor: 'transparent',
         borderRadius: 50,
         alignItems: 'center',
         justifyContent: 'center',

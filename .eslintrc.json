@@ -39,7 +39,14 @@
       "import/no-unresolved": 0,
       "import/prefer-default-export": 0,
       "semi": [2, "always"],
-      "indent": 0
+      "indent": 0,
+      "complexity": ["warn", 4],
+      "max-params": ["warn", 4],
+      "max-lines-per-function": ["warn", {
+        "max": 15,
+        "skipComments": true,
+        "skipBlankLines": true
+      }]
     },
     "overrides": [
       {
