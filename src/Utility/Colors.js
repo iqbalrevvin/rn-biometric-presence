@@ -16,6 +16,8 @@ const Colors = {
     accent3: '#19B832',
     accent4: '#DD1444',
     accent5: 'dodgerblue',
+    barDarkStyle: 'dark-content',
+    barLightStyle: 'light-content',
 };
 
 export default Colors;

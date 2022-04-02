@@ -1,33 +1,25 @@
+/* eslint-disable no-underscore-dangle */
+/* eslint-disable no-unused-vars */
 import React, { Fragment } from 'react';
 import { ScrollView, StatusBar, View } from 'react-native';
 import PropTypes from 'prop-types';
 import styles from './Container.styles';
 import CLoadingOverlay from '../Loadings/CLoadingOverlay';
 
-const Container = ({
-    children,
-    style,
-    backgroundColor,
-    withOverlayLoading,
-    loadingText,
-    barColor,
-    barType,
-    scrollView,
-}) => {
-    const renderContent = () => {
-        if (scrollView) return <ScrollView>{children}</ScrollView>;
-        return children;
-    };
-    return (
+const _renderContent = (scrollView, children) => {
+    if (scrollView) return <ScrollView>{children}</ScrollView>;
+    return children;
+};
+
+const Container = (props) => (
         <Fragment>
-            <StatusBar backgroundColor={barColor} barStyle={barType} />
-            <View style={[style, styles.container(backgroundColor)]}>
-                {withOverlayLoading && <CLoadingOverlay loadingText={loadingText} />}
-                {renderContent()}
+            <StatusBar animated={true} backgroundColor={props.barColor} barStyle={props.barType} />
+            <View style={[props.style, styles.container(props.backgroundColor)]}>
+                {props.withOverlayLoading && <CLoadingOverlay loadingText={props.loadingText} />}
+                {_renderContent(props.scrollView, props.children)}
             </View>
         </Fragment>
     );
-};
 
 export default Container;
 

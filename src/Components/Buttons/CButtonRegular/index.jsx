@@ -4,7 +4,7 @@ import Configs from './CButtonRegular.config';
 import styles from './CButtonRegular.style';
 
 const CButtonRegular = ({
-    loading, disabled, title, icon, type, color, style, titleSize, titleBold,
+    loading, disabled, title, icon, type, color, style, titleSize, titleBold, onPress,
 }) => (
     <Button
         icon={icon || null}
@@ -14,6 +14,7 @@ const CButtonRegular = ({
         type={type}
         buttonStyle={{ style, ...styles.container(color) }}
         titleStyle={styles.titleSection(titleSize, titleBold)}
+        onPress={onPress}
     />
 );
 

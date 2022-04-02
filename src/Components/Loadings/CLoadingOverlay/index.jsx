@@ -5,6 +5,7 @@ import { Colors } from '../../../Utility';
 import styles from './CLoadingOverlay.style';
 import Configs from './CLoadingOverlay.config';
 import CGap from '../../CGap';
+import CText from '../../CText';
 
 const CLoadingOverlay = ({ loadingText }) => (
     <Overlay overlayStyle={styles.contentOverlay} backdropStyle={styles.backdropOverlay}>
@@ -12,7 +13,7 @@ const CLoadingOverlay = ({ loadingText }) => (
             <ActivityIndicator size={'large'} color={Colors.accent5} />
             <CGap />
             { loadingText && (
-                <Text style={styles.text}>{loadingText}</Text>
+                <CText semiBold size={15}>{loadingText}</CText>
             )}
         </View>
     </Overlay>

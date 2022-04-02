@@ -13,4 +13,8 @@ export default {
         marginTop: 20,
         marginBottom: 20,
     },
+    logo: {
+        width: 250,
+        height: 250,
+    },
 };

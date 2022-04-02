@@ -1,5 +1,6 @@
+/* eslint-disable no-underscore-dangle */
 /* eslint-disable import/extensions */
-import React from 'react';
+import React, { Fragment } from 'react';
 import { View, Image } from 'react-native';
 import Configs from './WelcomeScreen.config';
 import { Colors, Images } from '../../Utility';
@@ -9,27 +10,38 @@ import styles from './WelcomScreen.styles';
 import CGap from '../../Components/CGap';
 import VersionText from '../../Components/VersionText';
 
-const RenderWelcomeScreen = () => {
+const _renderLogo = () => {
     const { logo1 } = Images;
-
     return (
-        <Container withOverlayLoading={false}>
-            <View style={styles.container}>
-                <Image source={logo1} style={{ width: 100, height: 100 }} />
-                <CText color={Colors.primary} bold size={20}>
-                    Biometric Presence
-                </CText>
-                <CGap height={10} />
-                <CText semiBold color={Colors.grey500} size={17}>
-                    Provide absent wherever
-                </CText>
-            </View>
-            <View style={styles.versionInfoContainer}>
-                <VersionText version='0.1.0' />
-            </View>
-        </Container>
+        <View style={styles.logoContainer}>
+            <Image source={logo1} style={styles.logo} />
+        </View>
     );
 };
+
+const _renderTitleApp = () => (
+    <Fragment>
+        <CText color={Colors.primary} bold size={20}>
+            Biometric Presence
+        </CText>
+        <CGap height={10} />
+        <CText semiBold color={Colors.grey500} size={17}>
+            Provide absent wherever
+        </CText>
+    </Fragment>
+);
+
+const RenderWelcomeScreen = () => (
+    <Container withOverlayLoading={false}>
+        <View style={styles.container}>
+            {_renderLogo()}
+            {_renderTitleApp()}
+        </View>
+        <View style={styles.versionInfoContainer}>
+            <VersionText version='0.1.0' />
+        </View>
+    </Container>
+);
 
 RenderWelcomeScreen.displayName = Configs.displayName;
 RenderWelcomeScreen.defaultProps = Configs.defaultProps;
