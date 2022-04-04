@@ -1,5 +1,13 @@
+/* eslint-disable complexity */
+/* eslint-disable max-lines-per-function */
 import React, { useState } from 'react';
 import { Input } from 'react-native-elements';
+import {
+    useController,
+    useFormContext,
+    UseControllerProps,
+    ControllerProps,
+} from 'react-hook-form';
 import { Colors } from '../../Utility';
 import styles from './CInput.styles';
 import configs from './CInput.config';
@@ -21,12 +29,15 @@ const CInput = ({
     autoCompleteType,
     rightIconName,
     rightIconColor,
+    onBlur,
+    name,
+    rules,
+    defaultValue,
 }) => {
     const [focus, setFocus] = useState(false);
     const [seePassword, setSeePassword] = useState(false);
 
     const onFocus = () => setFocus(true);
-    const onBlur = () => setFocus(!!value);
 
     const handleIconColor = (isFocus) => {
         if (isFocus) return Colors.primary;
@@ -41,20 +52,44 @@ const CInput = ({
         };
     };
 
+    const formContext = useFormContext();
+    const { formState } = formContext;
+
+    if (!formContext || !name) {
+        const msg = !formContext ? 'TextInput must be wrapped by the FormProvider' : 'Name must be defined';
+        console.error(msg);
+        return null;
+    }
+
+    const { field } = useController({ name, rules, defaultValue });
+
+    const handleOnBlur = () => {
+        if (field.onBlur) {
+            field.onBlur();
+            setFocus(!!value);
+        } else {
+            setFocus(!!value);
+        }
+    };
+
+    const hasError = Boolean(formState?.errors[name]);
+
     return (
         <Input
+            name={name}
             label={label}
             placeholder={placeholder}
             leftIcon={leftIconName ? { type: 'ant-design', name: leftIconName, color: handleIconColor(focus) } : null}
             style={style}
-            onChangeText={onChangeText}
-            // value={value}
+            onChangeText={field.onChange}
+            defaultValue={defaultValue}
+            value={field.value}
             onFocus={onFocus}
-            onBlur={onBlur}
+            onBlur={handleOnBlur}
             inputContainerStyle={styles.inputContainerStyle(focus, errorMessage)}
             inputStyle={{ color: Colors.grey700 }}
             labelStyle={labelStyle}
-            errorMessage={errorMessage}
+            errorMessage={hasError && formState.errors[name].message}
             errorStyle={{ color: Colors.accent4 }}
             autoCapitalize={autoCapitalize}
             secureTextEntry={seePassword ? false : isPassword}
@@ -62,6 +97,7 @@ const CInput = ({
             textContentType={textContentType}
             autoCompleteType={autoCompleteType}
             rightIcon={handleRightIconProps(isPassword, rightIconName, rightIconColor)}
+            rules={rules}
         />
     );
 };

@@ -19,6 +19,7 @@
     "babel-eslint": "10.1.0",
     "babel-preset-react-native": "^4.0.1",
     "lottie-react-native": "^5.0.1",
+    "moment": "^2.29.1",
     "prop-types": "^15.8.1",
     "react": "17.0.2",
     "react-hook-form": "^7.28.1",

@@ -1,6 +1,7 @@
 /* eslint-disable no-underscore-dangle */
 import React from 'react';
-import { Image, View } from 'react-native';
+import { Alert, Image, View } from 'react-native';
+import { useForm, FormProvider } from 'react-hook-form';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import CButtonRegular from '../../Components/Buttons/CButtonRegular';
 import CCard from '../../Components/CCard';
@@ -10,6 +11,9 @@ import CText from '../../Components/CText';
 import VersionText from '../../Components/VersionText';
 import { Colors, Images, Screen } from '../../Utility';
 import styles from './LoginScreen.styles';
+import Configs from './RenderLogin.config';
+
+const { inputNameConstant: { EMAIL, PASSWORD } } = Configs;
 
 const hookContainerState = () => {
     const [containerState, setContainerstate] = React.useState({
@@ -40,56 +44,69 @@ const renderHeaderLogin = () => (
 
 const renderInputEmail = () => (
     <CInput
+        name={EMAIL}
         label={'Username / Email'}
         placeholder={'yourmail@example.com'}
         leftIconName={'user'}
+        autoCapitalize='none'
+        rules={Configs.emailFormValidation}
     />
 );
 
 const renderInputPassword = () => (
     <CInput
+        name={PASSWORD}
         label={'Password'}
         placeholder={'Secret Password'}
         leftIconName={'unlock'}
+        autoCapitalize='none'
         isPassword={true}
+        rules={Configs.passwordFormValidation}
     />
 );
 
-const submitButton = (props) => {
+const submitAction = (props) => {
     const { containerState, setContainerstate } = props.hookContainer;
     const { navigation, setLogin } = props.primaryProps;
-    setContainerstate({
-        ...containerState,
-        withOverlayLoading: true,
-        loadingText: 'Signing in...',
-    });
-    setTimeout(() => {
-        setLogin('TokenTest123');
-        navigation.replace(Screen.INDEX_SCREEN.name);
-    }, 2000);
+    if (props.formMethod.formState.isValid) {
+        setContainerstate({
+            ...containerState,
+            withOverlayLoading: true,
+            loadingText: 'Signing in...',
+        });
+        setTimeout(() => {
+            navigation.replace(Screen.INDEX_SCREEN.name);
+            setLogin('TokenTest123');
+        }, 2000);
+    }
+};
+
+const submitError = () => {
+    Alert.alert('Error', 'Please check your input again!');
 };
 
 const renderButtonSubmit = (props) => (
     <CButtonRegular
+        disabled={!props.formMethod.formState.isValid}
         titleBold
         title='LOGIN ACCOUNT'
         color={Colors.primary}
-        onPress={() => submitButton(props)}
+        onPress={() => props.formMethod.handleSubmit(submitAction(props), submitError)}
     />
 );
 
 const renderForm = (props) => (
     <View style={styles.formInputSection}>
-        {renderInputEmail()}
-        {renderInputPassword()}
+        <FormProvider {...props.formMethod}>
+            {renderInputEmail()}
+            {renderInputPassword()}
+        </FormProvider>
         <View style={styles.forgotPasswordSection}>
             <TouchableOpacity>
                 <CText color={Colors.primary} size={14}>Forgot Password?</CText>
             </TouchableOpacity>
         </View>
-        <View>
-            {renderButtonSubmit(props)}
-        </View>
+        {renderButtonSubmit(props)}
     </View>
 );
 
@@ -112,14 +129,16 @@ const getContainerProps = (containerState) => ({
     loadingText: containerState.loadingText,
 });
 
-const getContentProps = (primaryProps, hookContainer) => ({
+const getContentProps = (primaryProps, hookContainer, formMethod) => ({
     primaryProps,
     hookContainer,
+    formMethod,
 });
 
 const RenderLoginScreen = (props) => {
+    const formMethods = useForm({ mode: 'onChange' });
     const hookContainer = hookContainerState();
-    const contentProps = getContentProps(props, hookContainer);
+    const contentProps = getContentProps(props, hookContainer, formMethods);
     return (
         <Container scrollView {...getContainerProps(hookContainer.containerState)}>
             {renderImageHeader()}
