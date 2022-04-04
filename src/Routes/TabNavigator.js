@@ -1,3 +1,5 @@
+/* eslint-disable max-lines-per-function */
+/* eslint-disable complexity */
 /* eslint-disable import/no-cycle */
 /* eslint-disable react/prop-types */
 /* eslint-disable no-param-reassign */
@@ -6,7 +8,7 @@ import React from 'react';
 import { View } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-vector-icons/AntDesign';
-import { Screen } from '../Utility';
+import { Colors, Screen } from '../Utility';
 
 const screenOptionsConfig = ({ route }) => ({
     tabBarIcon: ({ focused, color, size }) => {
@@ -36,7 +38,7 @@ const screenOptionsConfig = ({ route }) => ({
 
 const tabBarOptionsConfig = {
     showLabel: true,
-    activeTintColor: 'navy',
+    activeTintColor: '#005CEE',
     inactiveTintColor: 'dimgray',
     labelStyle: {
         fontSize: 12,
@@ -46,7 +48,7 @@ const tabBarOptionsConfig = {
 
 const Tab = createBottomTabNavigator();
 
-const TabNavigator = ({ props }) => (
+const TabNavigator = (props) => (
     <Tab.Navigator tabBarOptions={tabBarOptionsConfig} screenOptions={screenOptionsConfig}>
         <Tab.Screen
             name={Screen.HOME_SCREEN.name}

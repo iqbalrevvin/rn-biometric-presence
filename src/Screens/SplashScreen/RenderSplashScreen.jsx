@@ -11,6 +11,17 @@ import CGap from '../../Components/CGap';
 import Animation from '../../Utility/Animation';
 import VersionText from '../../Components/VersionText';
 
+const hookContainerState = () => {
+    const [containerState, setContainerstate] = React.useState({
+        backgroundColor: Colors.white,
+        barColor: Colors.white,
+        barType: Colors.barDarkStyle,
+        withOverlayLoading: false,
+        loadingText: null,
+    });
+    return { containerState, setContainerstate };
+};
+
 const renderLogoTitle = () => {
     const { logo1 } = Images;
     return (
@@ -54,10 +65,19 @@ const useDirectEffect = (props) => {
     }, []);
 };
 
+const getContainerProps = (containerState) => ({
+    backgroundColor: containerState.backgroundColor,
+    barColor: containerState.barColor,
+    barType: containerState.barType,
+    withOverlayLoading: containerState.withOverlayLoading,
+    loadingText: containerState.loadingText,
+});
+
 const RenderSplashScreen = (props) => {
+    const hookContainer = hookContainerState();
     useDirectEffect(props);
     return (
-        <Container withOverlayLoading={false}>
+        <Container {...getContainerProps(hookContainer)}>
             <View style={styles.container}>
                 {renderLogoTitle()}
                 {renderAnimation()}
