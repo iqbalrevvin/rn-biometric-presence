@@ -1,4 +1,12 @@
-export default {
+import { StyleSheet, ViewStyle } from "react-native";
+
+interface Styles {
+    container: ViewStyle;
+    animationSection: ViewStyle;
+    versionInfoContainer: ViewStyle;
+}
+
+const styles = StyleSheet.create<Styles>({
     container: {
         flex: 1,
         alignItems: 'center',
@@ -13,4 +21,6 @@ export default {
         marginTop: 20,
         marginBottom: 20,
     },
-};
+});
+
+export default styles;

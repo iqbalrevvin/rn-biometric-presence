@@ -8,7 +8,7 @@ import React from 'react';
 import { View } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-vector-icons/AntDesign';
-import { Colors, Screen } from '../Utility';
+import { Screen } from '../Utility';
 
 const screenOptionsConfig = ({ route }) => ({
     tabBarIcon: ({ focused, color, size }) => {

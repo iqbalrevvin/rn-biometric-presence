@@ -5,8 +5,6 @@ import { Input } from 'react-native-elements';
 import {
     useController,
     useFormContext,
-    UseControllerProps,
-    ControllerProps,
 } from 'react-hook-form';
 import { Colors } from '../../Utility';
 import styles from './CInput.styles';
@@ -18,7 +16,6 @@ const CInput = ({
     placeholder,
     value,
     style,
-    onChangeText,
     leftIconName,
     leftIconColor,
     errorMessage,
@@ -29,7 +26,6 @@ const CInput = ({
     autoCompleteType,
     rightIconName,
     rightIconColor,
-    onBlur,
     name,
     rules,
     defaultValue,
