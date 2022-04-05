@@ -1,5 +1,5 @@
 export default {
-    container: (backgroundColor) => ({
+    container: (backgroundColor: string) => ({
         flex: 1,
         backgroundColor,
     }),

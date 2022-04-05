@@ -5,7 +5,11 @@ import CText from '../CText';
 import styles from './VersionText.style';
 import Configs from './VersionText.config';
 
-const VersionText = ({ version }) => (
+interface VersionTextProps {
+    version: string;
+}
+
+const VersionText = ({ version }: VersionTextProps) => (
     <View style={styles.container}>
         <CText color={Colors.grey600} size={12}>
             App Version

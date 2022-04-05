@@ -1,5 +1,5 @@
 /* eslint-disable import/extensions */
-import React, { Fragment, useEffect } from 'react';
+import React, { Fragment, ReactNode, useEffect } from 'react';
 import LottieView from 'lottie-react-native';
 import { View, Image } from 'react-native';
 import Configs from './SplashScreen.config';
@@ -10,19 +10,28 @@ import styles from './SplashScreen.styles';
 import CGap from '../../Components/CGap';
 import Animation from '../../Utility/Animation';
 import VersionText from '../../Components/VersionText';
+import { ContainerState, HookContainerState, Props } from './RenderSplashScreen.type';
 
-const hookContainerState = () => {
-    const [containerState, setContainerstate] = React.useState({
+/**
+ * @description process of state container
+ * @returns {HookContainerState}
+ */
+const hookContainerState = (): HookContainerState => {
+    const [containerState, setContainerState] = React.useState({
         backgroundColor: Colors.white,
         barColor: Colors.white,
         barType: Colors.barDarkStyle,
         withOverlayLoading: false,
-        loadingText: null,
+        loadingText: '',
     });
-    return { containerState, setContainerstate };
+    return { containerState, setContainerState };
 };
 
-const renderLogoTitle = () => {
+/**
+ * @description Render Logo Title
+ * @returns {ReactNode}
+ */
+const renderLogoTitle = (): ReactNode => {
     const { logo1 } = Images;
     return (
         <Fragment>
@@ -38,7 +47,11 @@ const renderLogoTitle = () => {
     );
 };
 
-const renderAnimation = () => {
+/**
+ * @description Render Animation
+ * @returns {ReactNode}
+ */
+const renderAnimation = (): ReactNode => {
     const { loadingAnimationPrimary } = Animation;
     return (
         <LottieView
@@ -49,13 +62,22 @@ const renderAnimation = () => {
     );
 };
 
+/**
+ * @description Render Version Text
+ * @returns {ReactNode}
+ */
 const renderVersionText = () => (
     <View style={styles.versionInfoContainer}>
         <VersionText version='0.1.0' />
     </View>
 );
 
-const useDirectEffect = (props) => {
+/**
+ * @description Use direct effect to redirect to next screen
+ * @param {Props} props
+ * @returns {void}
+ */
+const useDirectEffect = (props: Props): void => {
     const { navigation, loggedIn, token } = props;
     useEffect(() => {
         setTimeout(() => {
@@ -65,7 +87,12 @@ const useDirectEffect = (props) => {
     }, []);
 };
 
-const getContainerProps = (containerState) => ({
+/**
+ * @description Get container props
+ * @param {ContainerState} containerState 
+ * @returns {ContainerProps}
+ */
+const getContainerProps = (containerState: ContainerState) => ({
     backgroundColor: containerState.backgroundColor,
     barColor: containerState.barColor,
     barType: containerState.barType,
@@ -73,11 +100,16 @@ const getContainerProps = (containerState) => ({
     loadingText: containerState.loadingText,
 });
 
-const RenderSplashScreen = (props) => {
+/**
+ * @description Render Splash Screen
+ * @param {Props} props
+ * @returns {ReactNode}
+ */
+const RenderSplashScreen = (props: Props): ReactNode => {
     const hookContainer = hookContainerState();
     useDirectEffect(props);
     return (
-        <Container {...getContainerProps(hookContainer)}>
+        <Container {...getContainerProps(hookContainer.containerState)}>
             <View style={styles.container}>
                 {renderLogoTitle()}
                 {renderAnimation()}

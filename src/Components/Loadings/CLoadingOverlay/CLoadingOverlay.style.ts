@@ -1,4 +1,12 @@
-export default {
+import { StyleSheet, ViewStyle } from "react-native";
+
+interface Styles {
+    contentOverlay: ViewStyle;
+    backdropOverlay: ViewStyle;
+    contentLoading: ViewStyle;
+}
+
+const styles = StyleSheet.create<Styles>({
     contentOverlay: {
         backgroundColor: 'transparent',
         borderRadius: 50,
@@ -13,4 +21,6 @@ export default {
       alignItems: 'center',
       justifyContent: 'center',
     },
-};
+});
+
+export default styles;
