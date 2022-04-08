@@ -1,9 +1,9 @@
 export interface CTextProps {
     children: React.ReactNode;
     style?: any;
-    bold?: boolean;
-    semiBold?: boolean;
-    size?: number;
-    color?: string;
+    bold?: any;
+    semiBold?: any;
+    size?: any;
+    color?: any;
     numberOfLine?: number;
 }

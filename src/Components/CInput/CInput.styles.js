@@ -1,3 +1,4 @@
+// eslint-disable-next-line import/extensions
 import { Colors } from '../../Utility';
 
 const handleBorderColor = (focus, errorMessage) => {
