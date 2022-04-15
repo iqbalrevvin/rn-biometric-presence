@@ -6,7 +6,7 @@ import { persistStore, persistReducer } from 'redux-persist';
 import Reducer from './Reducers';
 
 const persistConfig = {
-    key: 'roor',
+    key: 'root',
     storage: AsyncStorage,
     blacklist: [''],
     whitelist: [''],

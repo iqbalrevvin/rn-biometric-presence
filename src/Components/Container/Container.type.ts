@@ -6,5 +6,5 @@ export interface ContainerProps {
     withOverlayLoading?: boolean;
     loadingText?: string;
     scrollView?: boolean;
-    backgroundColor?: string;
+    backgroundColor?: any;
 }

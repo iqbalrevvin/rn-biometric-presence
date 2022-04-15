@@ -50,7 +50,7 @@
     },
     "overrides": [
       {
-        "files": ["src/**/*.jsx"],
+        "files": ["src/**/*.jsx", "src/**/*.tsx"],
         "rules": {
           "react/jsx-filename-extension": [1, { "extensions": [".tsx", ".jsx"] }],
           "import/extensions": [

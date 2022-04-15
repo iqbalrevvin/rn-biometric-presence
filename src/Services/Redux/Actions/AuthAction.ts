@@ -1,6 +1,6 @@
 import Action from '../ConstantReducer';
 
-export const loginAction = (token) => ({
+export const loginAction = (token: string) => ({
     type: Action.Auth.LOGIN,
     payload: token,
 });
