@@ -1,6 +1,6 @@
 import React, { ReactNode } from 'react';
 import { RootStateOrAny, useSelector, useDispatch } from 'react-redux';
-import { loginAction } from '../../Services/Redux/Actions/AuthAction';
+import { loginAction } from '~Services/Redux/Actions/AuthAction';
 import RenderSplashScreen from './RenderSplashScreen';
 import { IndexProps } from './RenderSplashScreen.type';
 import Configs from './SplashScreen.config';
