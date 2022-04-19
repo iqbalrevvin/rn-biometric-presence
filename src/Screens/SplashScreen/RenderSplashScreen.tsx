@@ -4,12 +4,12 @@ import LottieView from 'lottie-react-native';
 import { View, Image } from 'react-native';
 import Configs from './SplashScreen.config';
 import { Colors, Images, Screen } from '../../Utility';
-import Container from '../../Components/Container';
-import CText from '../../Components/CText';
+import Container from '~Components/Container';
+import CText from '~Components/CText';
 import styles from './SplashScreen.styles';
-import CGap from '../../Components/CGap';
-import Animation from '../../Utility/Animation';
-import VersionText from '../../Components/VersionText';
+import CGap from '~Components/CGap';
+import Animation from '~Utility/Animation';
+import VersionText from '~Components/VersionText';
 import { ContainerState, HookContainerState, Props } from './RenderSplashScreen.type';
 
 /**
@@ -83,7 +83,7 @@ const useDirectEffect = (props: Props): void => {
         setTimeout(() => {
             if (loggedIn && token) navigation.replace(Screen.INDEX_SCREEN.name);
             else navigation.replace(Screen.LOGIN_SCREEN.name);
-        }, 2500);
+        }, 2000);
     }, []);
 };
 

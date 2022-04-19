@@ -1,7 +1,7 @@
 /* eslint-disable no-underscore-dangle */
 import React from 'react';
 import { Alert, Image, View } from 'react-native';
-import { useForm, FormProvider } from 'react-hook-form';
+import { useForm, FormProvider, useWatch } from 'react-hook-form';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import CButtonRegular from '../../Components/Buttons/CButtonRegular';
 import CCard from '../../Components/CCard';
@@ -16,14 +16,48 @@ import Configs from './RenderLogin.config';
 const { inputNameConstant: { EMAIL, PASSWORD } } = Configs;
 
 const hookContainerState = () => {
-    const [containerState, setContainerstate] = React.useState({
+    const [containerState, setContainerState] = React.useState({
         backgroundColor: Colors.white,
         barColor: Colors.primary,
         barType: Colors.barLightStyle,
-        withOverlayLoading: false,
-        loadingText: null,
+        showToast: false,
+        toastSww: false,
+        toastType: null,
+        toastTitle: null,
+        toastSubTitle: null,
     });
-    return { containerState, setContainerstate };
+    return { containerState, setContainerState };
+};
+
+const showToastHideEffect = (containerState, setContainerState) => {
+    React.useEffect(() => {
+        setTimeout(() => {
+            setContainerState({
+                ...containerState,
+                showToast: false,
+            });
+        }, 500);
+    }, [containerState.showToast]);
+};
+
+const showToastHandle = (props, toastType, title, subTitle) => {
+    const { containerState, setContainerState } = props.hookContainer;
+    setContainerState({
+        ...containerState,
+        showToast: true,
+        toastType,
+        toastTitle: title,
+        toastSubTitle: subTitle,
+    });
+};
+
+const toastSwwHandle = (props) => {
+    const { containerState, setContainerState } = props.hookContainer;
+    setContainerState({
+        ...containerState,
+        showToast: true,
+        toastSww: true,
+    });
 };
 
 const renderImageHeader = () => {
@@ -42,7 +76,12 @@ const renderHeaderLogin = () => (
     </View>
 );
 
-const renderInputEmail = () => (
+const disableInputHandler = (props) => {
+    const { primaryProps } = props;
+    return primaryProps.loadingPage;
+};
+
+const renderInputEmail = (props) => (
     <CInput
         name={EMAIL}
         label={'Username / Email'}
@@ -50,10 +89,11 @@ const renderInputEmail = () => (
         leftIconName={'user'}
         autoCapitalize='none'
         rules={Configs.emailFormValidation}
+        disabled={disableInputHandler(props)}
     />
 );
 
-const renderInputPassword = () => (
+const renderInputPassword = (props) => (
     <CInput
         name={PASSWORD}
         label={'Password'}
@@ -62,22 +102,27 @@ const renderInputPassword = () => (
         autoCapitalize='none'
         isPassword={true}
         rules={Configs.passwordFormValidation}
+        disabled={disableInputHandler(props)}
     />
 );
 
-const submitAction = (props) => {
-    const { containerState, setContainerstate } = props.hookContainer;
-    const { navigation, setLogin } = props.primaryProps;
+const _processSubmit = async (props) => {
+    const { navigation, setLoadingPage, loginMutation } = props.primaryProps;
+    const response = await loginMutation.mutateAsync(props.watchedValue);
+    setLoadingPage(false, null);
+    if (response?.data) {
+        if (response?.data?.success) navigation.replace(Screen.INDEX_SCREEN.name);
+        else showToastHandle(props, 'error', 'Login Gagal', response?.data?.message);
+    } else {
+        toastSwwHandle(props);
+    }
+};
+
+const submitAction = async (props) => {
+    const { setLoadingPage } = props.primaryProps;
     if (props.formMethod.formState.isValid) {
-        setContainerstate({
-            ...containerState,
-            withOverlayLoading: true,
-            loadingText: 'Signing in...',
-        });
-        setTimeout(() => {
-            navigation.replace(Screen.INDEX_SCREEN.name);
-            setLogin('TokenTest123');
-        }, 2000);
+        setLoadingPage(true, 'Signing in...');
+        _processSubmit(props);
     }
 };
 
@@ -85,9 +130,14 @@ const submitError = () => {
     Alert.alert('Error', 'Please check your input again!');
 };
 
+const disableButtonHandler = (props) => {
+    const { primaryProps, formMethod } = props;
+    return !formMethod.formState.isValid || primaryProps.loadingPage;
+};
+
 const renderButtonSubmit = (props) => (
     <CButtonRegular
-        disabled={!props.formMethod.formState.isValid}
+        disabled={disableButtonHandler(props)}
         titleBold
         title='LOGIN ACCOUNT'
         color={Colors.primary}
@@ -98,8 +148,8 @@ const renderButtonSubmit = (props) => (
 const renderForm = (props) => (
     <View style={styles.formInputSection}>
         <FormProvider {...props.formMethod}>
-            {renderInputEmail()}
-            {renderInputPassword()}
+            {renderInputEmail(props)}
+            {renderInputPassword(props)}
         </FormProvider>
         <View style={styles.forgotPasswordSection}>
             <TouchableOpacity>
@@ -110,37 +160,61 @@ const renderForm = (props) => (
     </View>
 );
 
-const renderBodyContent = (props) => (
-    <View style={styles.formContainer}>
-        <CCard borderRadius={5} elevation={2}>
-            <View style={styles.formSection}>
-                {renderHeaderLogin()}
-                {renderForm(props)}
-            </View>
-        </CCard>
-    </View>
-);
+const renderBodyContent = (props) => {
+    const { primaryProps: { loadingPage } } = props;
+    return (
+        <View style={styles.formContainer}>
+            <CCard borderRadius={5} elevation={2} loading={loadingPage}>
+                <View style={styles.formSection}>
+                    {renderHeaderLogin()}
+                    {renderForm(props)}
+                </View>
+            </CCard>
+        </View>
+    );
+};
 
-const getContainerProps = (containerState) => ({
+const fieldWatchedValue = (watch) => ({
+    [EMAIL]: watch[0],
+    [PASSWORD]: watch[1],
+});
+
+const _initiateForm = () => {
+    const formOptions = { mode: 'onChange' };
+    const formMethods = useForm(formOptions);
+    const watch = useWatch({
+        control: formMethods.control,
+        name: [EMAIL, PASSWORD],
+    });
+    const watchedValue = fieldWatchedValue(watch);
+    return { watchedValue, formMethods };
+};
+
+const getContainerProps = (props, containerState) => ({
     backgroundColor: containerState.backgroundColor,
     barColor: containerState.barColor,
     barType: containerState.barType,
-    withOverlayLoading: containerState.withOverlayLoading,
-    loadingText: containerState.loadingText,
+    showToast: containerState.showToast,
+    toastSww: containerState.toastSww,
+    toastType: containerState.toastType,
+    toastTitle: containerState.toastTitle,
+    toastSubTitle: containerState.toastSubTitle,
 });
 
-const getContentProps = (primaryProps, hookContainer, formMethod) => ({
+const getContentProps = (primaryProps, hookContainer, watchedValue, formMethod) => ({
     primaryProps,
     hookContainer,
+    watchedValue,
     formMethod,
 });
 
 const RenderLoginScreen = (props) => {
-    const formMethods = useForm({ mode: 'onChange' });
+    const { watchedValue, formMethods } = _initiateForm();
     const hookContainer = hookContainerState();
-    const contentProps = getContentProps(props, hookContainer, formMethods);
+    const contentProps = getContentProps(props, hookContainer, watchedValue, formMethods);
+    showToastHideEffect(hookContainer.containerState, hookContainer.setContainerState);
     return (
-        <Container scrollView {...getContainerProps(hookContainer.containerState)}>
+        <Container scrollView {...getContainerProps(props, hookContainer.containerState)}>
             {renderImageHeader()}
             {renderBodyContent(contentProps)}
             <VersionText />

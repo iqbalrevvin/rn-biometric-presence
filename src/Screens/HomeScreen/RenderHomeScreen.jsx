@@ -141,11 +141,11 @@ const _renderItemList = ({ item }) => (
 const _renderFlatList = (props) => {
     const { primaryProps } = props;
     return (
-            <FlatList
-                keyExtractor={((item) => item.id.toString())}
-                data={primaryProps.dataList}
-                renderItem={(_renderItemList)}
-            />
+        <FlatList
+            keyExtractor={((item) => item.id.toString())}
+            data={primaryProps.dataList}
+            renderItem={(_renderItemList)}
+        />
     );
 };
 
@@ -181,11 +181,6 @@ const RenderHomeScreen = (props) => {
         <Container {..._getContainerProps(hookContainer.containerState)}>
             {_renderHeaderSection(headerSectionProps)}
             {_renderListHistoryPresence(listHistoryProps)}
-            {/* <FlatList
-                keyExtractor={((item) => item.id.toString())}
-                data={props.dataList}
-                renderItem={(_renderItemList)}
-            /> */}
         </Container>
     );
 };

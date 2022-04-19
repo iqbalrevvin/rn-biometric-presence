@@ -29,6 +29,7 @@ const CInput = ({
     name,
     rules,
     defaultValue,
+    disabled,
 }) => {
     const [focus, setFocus] = useState(false);
     const [seePassword, setSeePassword] = useState(false);
@@ -83,8 +84,8 @@ const CInput = ({
             onFocus={onFocus}
             onBlur={handleOnBlur}
             inputContainerStyle={styles.inputContainerStyle(focus, errorMessage)}
-            inputStyle={{ color: Colors.grey700 }}
-            labelStyle={labelStyle}
+            inputStyle={styles.inputStyle}
+            labelStyle={[styles.labelStyle, labelStyle]}
             errorMessage={hasError && formState.errors[name].message}
             errorStyle={{ color: Colors.accent4 }}
             autoCapitalize={autoCapitalize}
@@ -94,6 +95,7 @@ const CInput = ({
             autoCompleteType={autoCompleteType}
             rightIcon={handleRightIconProps(isPassword, rightIconName, rightIconColor)}
             rules={rules}
+            disabled={disabled}
         />
     );
 };

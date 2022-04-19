@@ -3,6 +3,11 @@ export interface ContainerProps {
     style?: any;
     barColor?: string;
     barType?: any;
+    showToast: boolean;
+    toastSww: boolean;
+    toastType: string;
+    toastTitle: string;
+    toastSubTitle: string;
     withOverlayLoading?: boolean;
     loadingText?: string;
     scrollView?: boolean;

@@ -13,8 +13,8 @@ const propTypes = {
 };
 
 const inputNameConstant = {
-    EMAIL: 'Email',
-    PASSWORD: 'Password',
+    EMAIL: 'email',
+    PASSWORD: 'password',
 };
 
 const emailFormValidation = {
