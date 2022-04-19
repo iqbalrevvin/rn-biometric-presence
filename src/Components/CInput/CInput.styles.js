@@ -1,5 +1,5 @@
 // eslint-disable-next-line import/extensions
-import { Colors } from '../../Utility';
+import Colors from '~Utility/Colors';
 
 const handleBorderColor = (focus, errorMessage) => {
     if (focus) return Colors.primary;
@@ -12,7 +12,13 @@ export default {
         borderBottomWidth: focus ? 2 : 1,
         borderColor: handleBorderColor(focus, errorMessage),
     }),
-    labelStyle: (focus) => ({
-        color: focus ? Colors.primary : Colors.grey500,
-    }),
+    labelStyle: {
+        color: Colors.grey700,
+        fontFamily: 'Muli-SemiBold',
+    },
+    inputStyle: {
+        color: Colors.grey700,
+        fontFamily: 'Muli-SemiBold',
+        fontSize: 17,
+    },
 };
