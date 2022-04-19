@@ -1,69 +1,72 @@
 
 {
-    "env": {
-        "browser": true,
-        "commonjs": true,
-        "es6": true,
-        "node": true
+  "env": {
+      "browser": true,
+      "commonjs": true,
+      "es6": true,
+      "node": true
+  },
+  "parser": "@babel/eslint-parser",
+  "plugins": [
+    "@typescript-eslint",
+    "react",
+    "react-native"
+  ],
+  "parserOptions": {
+    "ecmaFeatures": {
+        "jsx": true,
+        "modules": true
     },
-    "parser": "@babel/eslint-parser",
-    "plugins": [
-      "react",
-      "react-native"
-    ],
-    "parserOptions": {
-      "ecmaFeatures": {
-          "jsx": true,
-          "modules": true
-      },
-      "requireConfigFile": false
-    },
-    "extends" : [
-      "eslint:recommended",
-      "plugin:react/recommended",
-      "airbnb-base"
-    ],
-    "rules" : {
-      "import/no-extraneous-dependencies": ["warn", {"devDependencies": true}],
-      "key-spacing": ["error", { "mode": "minimum" }],
-      "react/jsx-max-props-per-line": [2, { "maximum": 2, "when": "multiline" }],
-      "arrow-body-style" : "warn",
-      "class-methods-use-this": 0,
-      "react/jsx-filename-extension": 0,
-      "global-require": 0,
-      "react/destructuring-assignment": 0,
-      "linebreak-style": 0,
-      "import/named": 2,
-      "import/no-dynamic-require": 0,
-      "import/no-named-as-default": 0,
-      "import/no-unresolved": 0,
-      "import/prefer-default-export": 0,
-      "semi": [2, "always"],
-      "indent": 0,
-      "complexity": ["warn", 4],
-      "max-params": ["warn", 4],
-      "max-lines-per-function": ["warn", {
-        "max": 15,
-        "skipComments": true,
-        "skipBlankLines": true
-      }]
-    },
-    "overrides": [
-      {
-        "files": ["src/**/*.jsx", "src/**/*.tsx"],
-        "rules": {
-          "react/jsx-filename-extension": [1, { "extensions": [".tsx", ".jsx"] }],
-          "import/extensions": [
-            "warn",
-            "never",
-            {
-              "js": "never",
-              "jsx": "never",
-              "ts": "never",
-              "tsx": "never"
-            }
-         ]
-        }
+    "requireConfigFile": false
+  },
+  "extends" : [
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "airbnb-base",
+    "plugin:@typescript-eslint/eslint-recommended"
+    // "plugin:@typescript-eslint/recommended"
+  ],
+  "rules" : {
+    "import/no-extraneous-dependencies": ["warn", {"devDependencies": true}],
+    "key-spacing": ["error", { "mode": "minimum" }],
+    "react/jsx-max-props-per-line": [2, { "maximum": 2, "when": "multiline" }],
+    "arrow-body-style" : "warn",
+    "class-methods-use-this": 0,
+    "react/jsx-filename-extension": 0,
+    "global-require": 0,
+    "react/destructuring-assignment": 0,
+    "linebreak-style": 0,
+    "import/named": 2,
+    "import/no-dynamic-require": 0,
+    "import/no-named-as-default": 0,
+    "import/no-unresolved": 0,
+    "import/prefer-default-export": 0,
+    "semi": [2, "always"],
+    "indent": 0,
+    "complexity": ["warn", 4],
+    "max-params": ["warn", 4],
+    "max-lines-per-function": ["warn", {
+      "max": 15,
+      "skipComments": true,
+      "skipBlankLines": true
+    }]
+  },
+  "overrides": [
+    {
+      "files": ["src/**/*.jsx", "src/**/*.tsx"],
+      "rules": {
+        "react/jsx-filename-extension": [1, { "extensions": [".tsx", ".jsx"] }],
+        "import/extensions": [
+          "warn",
+          "never",
+          {
+            "js": "never",
+            "jsx": "never",
+            "ts": "never",
+            "tsx": "never"
+          }
+       ]
       }
-    ]
+    }
+  ]
 }

@@ -89,7 +89,7 @@ const useDirectEffect = (props: Props): void => {
 
 /**
  * @description Get container props
- * @param {ContainerState} containerState 
+ * @param {ContainerState} containerState
  * @returns {ContainerProps}
  */
 const getContainerProps = (containerState: ContainerState) => ({

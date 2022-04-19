@@ -3,7 +3,7 @@ import { Dimensions } from 'react-native';
 const { width } = Dimensions.get('window');
 
 export default {
-    headerContainer: (primaryColor) => ({
+    headerContainer: (primaryColor: string) => ({
         backgroundColor: primaryColor,
     }),
     headerImageSection: {
@@ -21,7 +21,7 @@ export default {
         alignItems: 'center',
         justifyContent: 'center',
     },
-    infoActionCard: (whiteColor) => ({
+    infoActionCard: (whiteColor: string) => ({
         backgroundColor: whiteColor,
         margin: 10,
         padding: 10,
@@ -45,7 +45,7 @@ export default {
         flex: 1,
         marginHorizontal: 10,
     },
-    historyPresenceContainer: (whiteColor) => ({
+    historyPresenceContainer: (whiteColor: string) => ({
         flex: 1,
         backgroundColor: whiteColor,
     }),

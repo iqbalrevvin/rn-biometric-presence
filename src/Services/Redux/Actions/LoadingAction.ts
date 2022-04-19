@@ -5,6 +5,5 @@ export const loadingPageAction = (value: boolean, text: string) => ({
     payload: {
         value,
         loadingText: text,
-    }
+    },
 });
-

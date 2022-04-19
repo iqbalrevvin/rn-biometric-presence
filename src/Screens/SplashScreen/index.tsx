@@ -22,7 +22,6 @@ const SplashScreen = (props: IndexProps): ReactNode => {
     );
 };
 
-
 SplashScreen.displayName = Configs.displayName;
 SplashScreen.defaultProps = Configs.defaultProps;
 SplashScreen.propTypes = Configs.propTypes;

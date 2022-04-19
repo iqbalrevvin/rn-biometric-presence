@@ -1,8 +1,9 @@
 /* eslint-disable no-underscore-dangle */
 import React from 'react';
+import { IndexProps } from './HomeScreen.type';
 import RenderHomeScreen from './RenderHomeScreen';
 
-const _getHomeScreenProps = (props, dataList) => ({
+const _getHomeScreenProps = (props: IndexProps, dataList: any) => ({
     navigation: props.navigation,
     dataList,
 });
@@ -64,7 +65,7 @@ const _getListData = () => {
     return listData;
 };
 
-const HomeScreen = (props) => (
+const HomeScreen = (props: IndexProps) => (
     <RenderHomeScreen {..._getHomeScreenProps(props, _getListData())} />
 );
 

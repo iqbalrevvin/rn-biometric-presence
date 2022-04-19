@@ -13,29 +13,37 @@ import Configs from './HomeScreen.config';
 import CGap from '../../Components/CGap';
 import CButtonRegular from '../../Components/Buttons/CButtonRegular';
 import CListItemRegular from '../../Components/CListItemRegular';
+import {
+    ContainerState,
+    HeaderSectionProps,
+    HookContainerState,
+    HookTimeState,
+    ListHistoryProps,
+    Props,
+} from './HomeScreen.type';
 
-const hookContainerState = () => {
-    const [containerState, setContainerstate] = React.useState({
+const hookContainerState = (): HookContainerState => {
+    const [containerState, setContainerState] = React.useState({
         backgroundColor: Colors.white,
         barColor: Colors.primary,
         barType: Colors.barLightStyle,
         withOverlayLoading: false,
-        loadingText: null,
+        loadingText: '',
     });
-    return { containerState, setContainerstate };
+    return { containerState, setContainerState };
 };
 
-const hookTimeState = () => {
+const hookTimeState = (): HookTimeState => {
     const [dateNow, setDateNow] = React.useState(new Date());
     return { dateNow, setDateNow };
 };
 
-const refreshTime = (hookTimerProps) => {
+const refreshTime = (hookTimerProps: HookTimeState) => {
     const { setDateNow } = hookTimerProps;
     setDateNow(new Date());
 };
 
-const _useTimeEffect = (hookTimerProps) => {
+const _useTimeEffect = (hookTimerProps: HookTimeState) => {
     React.useEffect(() => {
         const interval = setInterval(() => {
             refreshTime(hookTimerProps);
@@ -44,7 +52,7 @@ const _useTimeEffect = (hookTimerProps) => {
     }, []);
 };
 
-const _getContainerProps = (containerState) => ({
+const _getContainerProps = (containerState: ContainerState) => ({
     backgroundColor: containerState.backgroundColor,
     barColor: containerState.barColor,
     barType: containerState.barType,
@@ -52,7 +60,7 @@ const _getContainerProps = (containerState) => ({
     loadingText: containerState.loadingText,
 });
 
-const _renderTimeSection = (props) => {
+const _renderTimeSection = (props: HeaderSectionProps) => {
     const { hookTimer } = props;
     const { dateNow } = hookTimer;
     return (
@@ -103,19 +111,19 @@ const _renderButtonPresence = () => (
     </View>
 );
 
-const _renderInfoActionCard = (props) => (
+const _renderInfoActionCard = (props: HeaderSectionProps) => (
     <View style={styles.infoActionCard(Colors.white)}>
-        {_renderCardNameInfo(props)}
-        {_renderCardShiftInfo(props)}
+        {_renderCardNameInfo()}
+        {_renderCardShiftInfo()}
         <CGap height={10} />
         <Divider orientation="horizontal" />
         <CGap height={20} />
-        {_renderButtonPresence(props)}
+        {_renderButtonPresence()}
         <CGap height={10} />
     </View>
 );
 
-const _renderHeaderSection = (props) => {
+const _renderHeaderSection = (props: HeaderSectionProps) => {
     const { bgImage2 } = Images;
     const primaryColor = Colors.primary;
     return (
@@ -129,7 +137,7 @@ const _renderHeaderSection = (props) => {
     );
 };
 
-const _renderItemList = ({ item }) => (
+const _renderItemList = ({ item }: any) => (
     <CListItemRegular
         title={moment(item.time).format('LLL')}
         subtitle={item.type}
@@ -138,7 +146,7 @@ const _renderItemList = ({ item }) => (
     />
 );
 
-const _renderFlatList = (props) => {
+const _renderFlatList = (props: ListHistoryProps) => {
     const { primaryProps } = props;
     return (
         <FlatList
@@ -149,7 +157,7 @@ const _renderFlatList = (props) => {
     );
 };
 
-const _renderListHistoryPresence = (props) => {
+const _renderListHistoryPresence = (props: ListHistoryProps) => {
     const whiteColor = Colors.white;
     return (
         <View style={styles.historyPresenceContainer(whiteColor)}>
@@ -162,16 +170,16 @@ const _renderListHistoryPresence = (props) => {
     );
 };
 
-const _getHeaderSectionProps = (primaryProps, hookTimer) => ({
+const _getHeaderSectionProps = (primaryProps: Props, hookTimer: HookTimeState) => ({
     primaryProps,
     hookTimer,
 });
 
-const _getListHistoryProps = (primaryProps) => ({
+const _getListHistoryProps = (primaryProps: Props) => ({
     primaryProps,
 });
 
-const RenderHomeScreen = (props) => {
+const RenderHomeScreen = (props: Props) => {
     const hookContainer = hookContainerState();
     const hookTimer = hookTimeState();
     const headerSectionProps = _getHeaderSectionProps(props, hookTimer);

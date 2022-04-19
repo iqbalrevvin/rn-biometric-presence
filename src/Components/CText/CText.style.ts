@@ -19,4 +19,4 @@ export default {
         fontSize: size || 14,
         color: color || Colors.grey900,
     }),
-}
+};
