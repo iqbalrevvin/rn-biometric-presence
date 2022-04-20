@@ -1,4 +1,4 @@
-/* eslint-disable no-underscore-dangle */
+
 import React from 'react';
 import { Alert, Image, View } from 'react-native';
 import { useForm, FormProvider, useWatch } from 'react-hook-form';
@@ -15,7 +15,7 @@ import Configs from './RenderLogin.config';
 
 const { inputNameConstant: { EMAIL, PASSWORD } } = Configs;
 
-const hookContainerState = () => {
+const useHookContainerState = () => {
     const [containerState, setContainerState] = React.useState({
         backgroundColor: Colors.white,
         barColor: Colors.primary,
@@ -29,7 +29,7 @@ const hookContainerState = () => {
     return { containerState, setContainerState };
 };
 
-const showToastHideEffect = (containerState, setContainerState) => {
+const useShowToastHideEffect = (containerState, setContainerState) => {
     React.useEffect(() => {
         setTimeout(() => {
             setContainerState({
@@ -37,6 +37,7 @@ const showToastHideEffect = (containerState, setContainerState) => {
                 showToast: false,
             });
         }, 500);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [containerState.showToast]);
 };
 
@@ -63,17 +64,17 @@ const toastSwwHandle = (props) => {
 const renderImageHeader = () => {
     const { bgImage1 } = Images;
     return (
-        <View style={styles.bgContainer}>
-            <Image source={bgImage1} style={styles.imageSection} />
-        </View>
+      <View style={styles.bgContainer}>
+        <Image source={bgImage1} style={styles.imageSection} />
+      </View>
     );
 };
 
 const renderHeaderLogin = () => (
-    <View style={styles.formTitleContainer}>
-        <CText bold color={Colors.grey700} size={20}>BIOMETRIC PRESENCE</CText>
-        <CText semiBold color={Colors.grey700} size={17}>Signin Account</CText>
-    </View>
+  <View style={styles.formTitleContainer}>
+    <CText bold color={Colors.grey700} size={20}>BIOMETRIC PRESENCE</CText>
+    <CText semiBold color={Colors.grey700} size={17}>Signin Account</CText>
+  </View>
 );
 
 const disableInputHandler = (props) => {
@@ -82,27 +83,27 @@ const disableInputHandler = (props) => {
 };
 
 const renderInputEmail = (props) => (
-    <CInput
-        name={EMAIL}
-        label={'Username / Email'}
-        placeholder={'yourmail@example.com'}
-        leftIconName={'user'}
-        autoCapitalize='none'
-        rules={Configs.emailFormValidation}
-        disabled={disableInputHandler(props)}
+  <CInput
+    name={EMAIL}
+    label={'Username / Email'}
+    placeholder={'yourmail@example.com'}
+    leftIconName={'user'}
+    autoCapitalize="none"
+    rules={Configs.emailFormValidation}
+    disabled={disableInputHandler(props)}
     />
 );
 
 const renderInputPassword = (props) => (
-    <CInput
-        name={PASSWORD}
-        label={'Password'}
-        placeholder={'Secret Password'}
-        leftIconName={'unlock'}
-        autoCapitalize='none'
-        isPassword={true}
-        rules={Configs.passwordFormValidation}
-        disabled={disableInputHandler(props)}
+  <CInput
+    name={PASSWORD}
+    label={'Password'}
+    placeholder={'Secret Password'}
+    leftIconName={'unlock'}
+    autoCapitalize="none"
+    isPassword={true}
+    rules={Configs.passwordFormValidation}
+    disabled={disableInputHandler(props)}
     />
 );
 
@@ -136,41 +137,41 @@ const disableButtonHandler = (props) => {
 };
 
 const renderButtonSubmit = (props) => (
-    <CButtonRegular
-        disabled={disableButtonHandler(props)}
-        titleBold
-        title='LOGIN ACCOUNT'
-        color={Colors.primary}
-        onPress={() => props.formMethod.handleSubmit(submitAction(props), submitError)}
+  <CButtonRegular
+    disabled={disableButtonHandler(props)}
+    titleBold
+    title="LOGIN ACCOUNT"
+    color={Colors.primary}
+    onPress={() => props.formMethod.handleSubmit(submitAction(props), submitError)}
     />
 );
 
 const renderForm = (props) => (
-    <View style={styles.formInputSection}>
-        <FormProvider {...props.formMethod}>
-            {renderInputEmail(props)}
-            {renderInputPassword(props)}
-        </FormProvider>
-        <View style={styles.forgotPasswordSection}>
-            <TouchableOpacity>
-                <CText color={Colors.primary} size={14}>Forgot Password?</CText>
-            </TouchableOpacity>
-        </View>
-        {renderButtonSubmit(props)}
+  <View style={styles.formInputSection}>
+    <FormProvider {...props.formMethod}>
+      {renderInputEmail(props)}
+      {renderInputPassword(props)}
+    </FormProvider>
+    <View style={styles.forgotPasswordSection}>
+      <TouchableOpacity>
+        <CText color={Colors.primary} size={14}>Forgot Password?</CText>
+      </TouchableOpacity>
     </View>
+    {renderButtonSubmit(props)}
+  </View>
 );
 
 const renderBodyContent = (props) => {
     const { primaryProps: { loadingPage } } = props;
     return (
-        <View style={styles.formContainer}>
-            <CCard borderRadius={5} elevation={2} loading={loadingPage}>
-                <View style={styles.formSection}>
-                    {renderHeaderLogin()}
-                    {renderForm(props)}
-                </View>
-            </CCard>
-        </View>
+      <View style={styles.formContainer}>
+        <CCard borderRadius={5} elevation={2} loading={loadingPage}>
+          <View style={styles.formSection}>
+            {renderHeaderLogin()}
+            {renderForm(props)}
+          </View>
+        </CCard>
+      </View>
     );
 };
 
@@ -190,7 +191,7 @@ const _initiateForm = () => {
     return { watchedValue, formMethods };
 };
 
-const getContainerProps = (props, containerState) => ({
+const getContainerProps = (_props, containerState) => ({
     backgroundColor: containerState.backgroundColor,
     barColor: containerState.barColor,
     barType: containerState.barType,
@@ -210,15 +211,15 @@ const getContentProps = (primaryProps, hookContainer, watchedValue, formMethod) 
 
 const RenderLoginScreen = (props) => {
     const { watchedValue, formMethods } = _initiateForm();
-    const hookContainer = hookContainerState();
+    const hookContainer = useHookContainerState();
     const contentProps = getContentProps(props, hookContainer, watchedValue, formMethods);
-    showToastHideEffect(hookContainer.containerState, hookContainer.setContainerState);
+    useShowToastHideEffect(hookContainer.containerState, hookContainer.setContainerState);
     return (
-        <Container scrollView {...getContainerProps(props, hookContainer.containerState)}>
-            {renderImageHeader()}
-            {renderBodyContent(contentProps)}
-            <VersionText />
-        </Container>
+      <Container scrollView {...getContainerProps(props, hookContainer.containerState)}>
+        {renderImageHeader()}
+        {renderBodyContent(contentProps)}
+        <VersionText />
+      </Container>
     );
 };
 

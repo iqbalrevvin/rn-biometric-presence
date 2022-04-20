@@ -12,15 +12,15 @@ interface CLoadingOverlayProps {
 }
 
 const CLoadingOverlay = ({ loadingText }: CLoadingOverlayProps) => (
-    <Overlay isVisible overlayStyle={styles.contentOverlay} backdropStyle={styles.backdropOverlay}>
-        <View style={styles.contentLoading}>
-            <ActivityIndicator size={'large'} color={Colors.accent5} />
-            <CGap />
-            { loadingText && (
-                <CText semiBold size={15}>{loadingText}</CText>
+  <Overlay isVisible overlayStyle={styles.contentOverlay} backdropStyle={styles.backdropOverlay}>
+    <View style={styles.contentLoading}>
+      <ActivityIndicator size={'large'} color={Colors.accent5} />
+      <CGap />
+      { loadingText && (
+        <CText semiBold size={15}>{loadingText}</CText>
             )}
-        </View>
-    </Overlay>
+    </View>
+  </Overlay>
 );
 
 CLoadingOverlay.propTypes = Configs.propTypes;

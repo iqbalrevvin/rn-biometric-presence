@@ -1,4 +1,3 @@
-/* eslint-disable import/extensions */
 import React, { Fragment, ReactNode, useEffect } from 'react';
 import LottieView from 'lottie-react-native';
 import { View, Image } from 'react-native';
@@ -16,7 +15,7 @@ import { ContainerState, HookContainerState, Props } from './RenderSplashScreen.
  * @description process of state container
  * @returns {HookContainerState}
  */
-const hookContainerState = (): HookContainerState => {
+const useHookContainerState = (): HookContainerState => {
     const [containerState, setContainerState] = React.useState({
         backgroundColor: Colors.white,
         barColor: Colors.white,
@@ -34,16 +33,16 @@ const hookContainerState = (): HookContainerState => {
 const renderLogoTitle = (): ReactNode => {
     const { logo1 } = Images;
     return (
-        <Fragment>
-            <Image source={logo1} style={{ width: 120, height: 120 }} />
-            <CText color={Colors.primary} bold size={20}>
-                Biometric Presence
-            </CText>
-            <CGap height={10} />
-            <CText color={Colors.grey500} size={18}>
-                Provide absent wherever
-            </CText>
-        </Fragment>
+      <Fragment>
+        <Image source={logo1} style={styles.logoSection} />
+        <CText color={Colors.primary} bold size={20}>
+          Biometric Presence
+        </CText>
+        <CGap height={10} />
+        <CText color={Colors.grey500} size={18}>
+          Provide absent wherever
+        </CText>
+      </Fragment>
     );
 };
 
@@ -54,10 +53,10 @@ const renderLogoTitle = (): ReactNode => {
 const renderAnimation = (): ReactNode => {
     const { loadingAnimationPrimary } = Animation;
     return (
-        <LottieView
-            source={loadingAnimationPrimary}
-            style={styles.animationSection} autoPlay
-            loop
+      <LottieView
+        source={loadingAnimationPrimary}
+        style={styles.animationSection} autoPlay
+        loop
         />
     );
 };
@@ -67,9 +66,9 @@ const renderAnimation = (): ReactNode => {
  * @returns {ReactNode}
  */
 const renderVersionText = () => (
-    <View style={styles.versionInfoContainer}>
-        <VersionText version='0.1.0' />
-    </View>
+  <View style={styles.versionInfoContainer}>
+    <VersionText version="0.1.0" />
+  </View>
 );
 
 /**
@@ -84,7 +83,7 @@ const useDirectEffect = (props: Props): void => {
             if (loggedIn && token) navigation.replace(Screen.INDEX_SCREEN.name);
             else navigation.replace(Screen.LOGIN_SCREEN.name);
         }, 2000);
-    }, []);
+    });
 };
 
 /**
@@ -106,16 +105,16 @@ const getContainerProps = (containerState: ContainerState) => ({
  * @returns {ReactNode}
  */
 const RenderSplashScreen = (props: Props): ReactNode => {
-    const hookContainer = hookContainerState();
+    const hookContainer = useHookContainerState();
     useDirectEffect(props);
     return (
-        <Container {...getContainerProps(hookContainer.containerState)}>
-            <View style={styles.container}>
-                {renderLogoTitle()}
-                {renderAnimation()}
-            </View>
-            {renderVersionText()}
-        </Container>
+      <Container {...getContainerProps(hookContainer.containerState)}>
+        <View style={styles.container}>
+          {renderLogoTitle()}
+          {renderAnimation()}
+        </View>
+        {renderVersionText()}
+      </Container>
     );
 };
 

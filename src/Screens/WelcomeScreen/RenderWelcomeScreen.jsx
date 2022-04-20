@@ -1,5 +1,3 @@
-/* eslint-disable no-underscore-dangle */
-/* eslint-disable import/extensions */
 import React, { Fragment } from 'react';
 import { View, Image } from 'react-native';
 import Configs from './WelcomeScreen.config';

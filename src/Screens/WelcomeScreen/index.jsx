@@ -9,7 +9,7 @@ const WelcomeScreen = ({ navigation }) => {
     });
 
     return (
-        <RenderWelcomeScreen {...welcomeScreenProps()} />
+      <RenderWelcomeScreen {...welcomeScreenProps()} />
     );
 };
 

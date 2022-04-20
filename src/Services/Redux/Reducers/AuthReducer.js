@@ -1,5 +1,3 @@
-/* eslint-disable import/extensions */
-/* eslint-disable no-underscore-dangle */
 import Action from '../ConstantReducer';
 
 const initialState = {

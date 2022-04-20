@@ -1,5 +1,4 @@
 /* eslint-disable no-useless-escape */
-/* eslint-disable import/extensions */
 import React from 'react';
 import { Easing, LogBox } from 'react-native';
 import { createStackNavigator, TransitionPresets } from '@react-navigation/stack';

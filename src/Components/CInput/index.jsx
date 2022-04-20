@@ -72,30 +72,30 @@ const CInput = ({
     const hasError = Boolean(formState?.errors[name]);
 
     return (
-        <Input
-            name={name}
-            label={label}
-            placeholder={placeholder}
-            leftIcon={leftIconName ? { type: 'ant-design', name: leftIconName, color: handleIconColor(focus) } : null}
-            style={style}
-            onChangeText={field.onChange}
-            defaultValue={defaultValue}
-            value={field.value}
-            onFocus={onFocus}
-            onBlur={handleOnBlur}
-            inputContainerStyle={styles.inputContainerStyle(focus, errorMessage)}
-            inputStyle={styles.inputStyle}
-            labelStyle={[styles.labelStyle, labelStyle]}
-            errorMessage={hasError && formState.errors[name].message}
-            errorStyle={{ color: Colors.accent4 }}
-            autoCapitalize={autoCapitalize}
-            secureTextEntry={seePassword ? false : isPassword}
-            keyboardType={keyboardType}
-            textContentType={textContentType}
-            autoCompleteType={autoCompleteType}
-            rightIcon={handleRightIconProps(isPassword, rightIconName, rightIconColor)}
-            rules={rules}
-            disabled={disabled}
+      <Input
+        name={name}
+        label={label}
+        placeholder={placeholder}
+        leftIcon={leftIconName ? { type: 'ant-design', name: leftIconName, color: handleIconColor(focus) } : null}
+        style={style}
+        onChangeText={field.onChange}
+        defaultValue={defaultValue}
+        value={field.value}
+        onFocus={onFocus}
+        onBlur={handleOnBlur}
+        inputContainerStyle={styles.inputContainerStyle(focus, errorMessage)}
+        inputStyle={styles.inputStyle}
+        labelStyle={[styles.labelStyle, labelStyle]}
+        errorMessage={hasError && formState.errors[name].message}
+        errorStyle={{ color: Colors.accent4 }}
+        autoCapitalize={autoCapitalize}
+        secureTextEntry={seePassword ? false : isPassword}
+        keyboardType={keyboardType}
+        textContentType={textContentType}
+        autoCompleteType={autoCompleteType}
+        rightIcon={handleRightIconProps(isPassword, rightIconName, rightIconColor)}
+        rules={rules}
+        disabled={disabled}
         />
     );
 };

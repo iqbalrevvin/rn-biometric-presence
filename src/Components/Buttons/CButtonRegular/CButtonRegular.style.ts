@@ -6,6 +6,6 @@ export default {
     titleSection: (titleSize: number, titleBold: any) => ({
         fontFamily: titleBold ? 'Muli-Bold' : 'Muli-SemiBold',
         fontSize: titleSize || 13,
-        fontWeight: titleBold || 'bold',
+        fontWeight: titleBold && 'bold',
     }),
 };

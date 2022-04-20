@@ -26,7 +26,7 @@ const LoginScreen = (props) => {
         loginMutation: useMutation(submitSignin),
     };
     return (
-        <RenderLoginScreen {..._getLoginScreenProps(props, mutation, stateReducer, dispatch)} />
+      <RenderLoginScreen {..._getLoginScreenProps(props, mutation, stateReducer, dispatch)} />
     );
 };
 

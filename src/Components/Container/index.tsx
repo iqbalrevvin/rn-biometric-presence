@@ -1,5 +1,3 @@
-/* eslint-disable no-underscore-dangle */
-/* eslint-disable no-unused-vars */
 import React, { Fragment, ReactNode } from 'react';
 import { ScrollView, StatusBar, View } from 'react-native';
 import PropTypes from 'prop-types';
@@ -18,10 +16,12 @@ const toastSwwText = {
     subtitle: 'Mohon maaf, silahkan kembali nanti 🙏🏻',
 };
 
+// eslint-disable-next-line max-lines-per-function
 const Container = (props: ContainerProps) => {
     const {
  showToast, toastSww, toastType, toastTitle, toastSubTitle,
 } = props;
+    // eslint-disable-next-line complexity
     React.useEffect(() => {
         if (showToast) {
             Toast.show({
@@ -32,15 +32,16 @@ const Container = (props: ContainerProps) => {
                 visibilityTime: 2500,
             });
         }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [showToast]);
     return (
-        <Fragment>
-            <StatusBar animated={true} backgroundColor={props.barColor} barStyle={props.barType} />
-            <View style={[props.style, styles.container(props.backgroundColor)]}>
-                {props.withOverlayLoading && <CLoadingOverlay loadingText={props.loadingText} />}
-                {_renderContent(props.scrollView, props.children)}
-            </View>
-        </Fragment>
+      <Fragment>
+        <StatusBar animated={true} backgroundColor={props.barColor} barStyle={props.barType} />
+        <View style={[props.style, styles.container(props.backgroundColor)]}>
+          {props.withOverlayLoading && <CLoadingOverlay loadingText={props.loadingText} />}
+          {_renderContent(props.scrollView, props.children)}
+        </View>
+      </Fragment>
     );
 };
 

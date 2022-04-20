@@ -1,5 +1,3 @@
-/* eslint-disable no-undef */
-/* eslint-disable no-underscore-dangle */
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { applyMiddleware, compose, createStore } from 'redux';
 import { persistStore, persistReducer } from 'redux-persist';

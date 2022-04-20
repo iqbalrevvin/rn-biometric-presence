@@ -10,14 +10,14 @@ interface VersionTextProps {
 }
 
 const VersionText = ({ version }: VersionTextProps) => (
-    <View style={styles.container}>
-        <CText color={Colors.grey600} size={12}>
-            App Version
-        </CText>
-        <CText color={Colors.grey600} size={12}>
-            {version}
-        </CText>
-    </View>
+  <View style={styles.container}>
+    <CText color={Colors.grey600} size={12}>
+      App Version
+    </CText>
+    <CText color={Colors.grey600} size={12}>
+      {version}
+    </CText>
+  </View>
 );
 
 export default React.memo(VersionText);

@@ -7,11 +7,11 @@ import { CTextProps } from './CText.type';
 const CText = ({
     children, style, bold, semiBold, color, size, numberOfLine,
 }: CTextProps) => (
-    <Text
-        style={[style, styles.textSection(bold, semiBold, color, size)]}
-        numberOfLines={numberOfLine}>
-        {children}
-    </Text>
+  <Text
+    style={[style, styles.textSection(bold, semiBold, color, size)]}
+    numberOfLines={numberOfLine}>
+    {children}
+  </Text>
 );
 
 CText.propTypes = Configs.propTypes;
