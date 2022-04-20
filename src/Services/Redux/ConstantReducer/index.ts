@@ -1,6 +1,6 @@
 const Action = {
     Loading: {
-        PAGE: 'PAGE'
+        PAGE: 'PAGE',
     },
     Auth: {
         LOGIN: 'LOGIN',

@@ -6,13 +6,13 @@ import styles from './CListItemRegular.style';
 const CListItemRegular = ({
   withDivider, title, subtitle, withArrow, onPress,
 }) => (
-    <ListItem onPress={onPress} bottomDivider={withDivider}>
-        <ListItem.Content>
-          <ListItem.Title style={styles.titleSection}>{title}</ListItem.Title>
-          <ListItem.Subtitle style={styles.subtitleSection}>{subtitle}</ListItem.Subtitle>
-        </ListItem.Content>
-        {withArrow && <ListItem.Chevron />}
-    </ListItem>
+  <ListItem onPress={onPress} bottomDivider={withDivider}>
+    <ListItem.Content>
+      <ListItem.Title style={styles.titleSection}>{title}</ListItem.Title>
+      <ListItem.Subtitle style={styles.subtitleSection}>{subtitle}</ListItem.Subtitle>
+    </ListItem.Content>
+    {withArrow && <ListItem.Chevron />}
+  </ListItem>
 );
 
 CListItemRegular.defaultProps = Configs.defaultProps;

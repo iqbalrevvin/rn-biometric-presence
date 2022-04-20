@@ -6,21 +6,21 @@ import Configs from './CCard.config';
 import { Colors } from '../../Utility';
 
 const renderLiniarProgress = (borderRadius) => (
-    <View style={styles.liniarProgressContainer}>
-        <LinearProgress
-            color={Colors.primary}
-            style={styles.liniarProgressSection(borderRadius)}
+  <View style={styles.liniarProgressContainer}>
+    <LinearProgress
+      color={Colors.primary}
+      style={styles.liniarProgressSection(borderRadius)}
         />
-    </View>
+  </View>
 );
 
 const CCard = ({
     children, borderRadius, borderWidth, elevation, loading,
 }) => (
-    <Card containerStyle={styles.container(borderRadius, borderWidth, elevation)}>
-        {loading && renderLiniarProgress(borderRadius)}
-        {children}
-    </Card>
+  <Card containerStyle={styles.container(borderRadius, borderWidth, elevation)}>
+    {loading && renderLiniarProgress(borderRadius)}
+    {children}
+  </Card>
 );
 
 CCard.defaultProps = Configs.defaultProps;

@@ -16,12 +16,11 @@ const SplashScreen = (props: IndexProps): ReactNode => {
     const authState = useSelector((state: RootStateOrAny) => state.auth);
     const dispatch = useDispatch();
     return (
-        <React.Fragment>
-            <RenderSplashScreen {...SplashScreenProps(props.navigation, authState, dispatch)} />
-        </React.Fragment>
+      <React.Fragment>
+        <RenderSplashScreen {...SplashScreenProps(props.navigation, authState, dispatch)} />
+      </React.Fragment>
     );
 };
-
 
 SplashScreen.displayName = Configs.displayName;
 SplashScreen.defaultProps = Configs.defaultProps;

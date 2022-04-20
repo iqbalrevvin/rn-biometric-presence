@@ -1,3 +1,4 @@
+import React from 'react';
 export interface CTextProps {
     children: React.ReactNode;
     style?: any;

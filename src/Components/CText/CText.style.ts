@@ -1,4 +1,4 @@
-import { Colors } from '../../Utility';
+import { Colors } from '~Utility';
 
 const textCondition = (bold: boolean, semiBold: boolean) => {
     if (bold) return 'Muli-Bold';
@@ -19,4 +19,4 @@ export default {
         fontSize: size || 14,
         color: color || Colors.grey900,
     }),
-}
+};

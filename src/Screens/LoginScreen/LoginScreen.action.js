@@ -1,4 +1,3 @@
-/* eslint-disable import/extensions */
 import API, { ENDPOINT } from '~Services/Configs/Api';
 
 export const submitSignin = async (data) => {

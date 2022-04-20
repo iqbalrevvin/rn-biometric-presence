@@ -11,16 +11,16 @@ import { toastConfig } from '~Components/Toast/toast.config';
 const queryClient = new QueryClient();
 
 const App = () => (
-    <QueryClientProvider client={queryClient}>
-        <ThemeProvider>
-            <Provider store={Store}>
-                <PersistGate loading={null} persistor={Persistor}>
-                    <Routes />
-                    <Toast config={toastConfig} />
-                </PersistGate>
-            </Provider>
-        </ThemeProvider>
-    </QueryClientProvider>
+  <QueryClientProvider client={queryClient}>
+    <ThemeProvider>
+      <Provider store={Store}>
+        <PersistGate loading={null} persistor={Persistor}>
+          <Routes />
+          <Toast config={toastConfig} />
+        </PersistGate>
+      </Provider>
+    </ThemeProvider>
+  </QueryClientProvider>
 );
 
 export default App;

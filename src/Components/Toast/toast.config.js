@@ -11,11 +11,11 @@ export const toastConfig = {
       by modifying the existing `BaseToast` component
     */
     success: (props) => (
-        <BaseToast
-            {...props}
-            style={styles.toastStyle('success')}
-            text1Style={styles.text1}
-            text2Style={styles.text2}
+      <BaseToast
+        {...props}
+        style={styles.toastStyle('success')}
+        text1Style={styles.text1}
+        text2Style={styles.text2}
         />
     ),
     /*
@@ -23,19 +23,19 @@ export const toastConfig = {
       by modifying the existing `ErrorToast` component
     */
     error: (props) => (
-        <ErrorToast
-            {...props}
-            style={styles.toastStyle('error')}
-            text1Style={styles.text1}
-            text2Style={styles.text2}
+      <ErrorToast
+        {...props}
+        style={styles.toastStyle('error')}
+        text1Style={styles.text1}
+        text2Style={styles.text2}
         />
     ),
     info: (props) => (
-        <InfoToast
-            {...props}
-            style={styles.toastStyle('info')}
-            text1Style={styles.text1}
-            text2Style={styles.text2}
+      <InfoToast
+        {...props}
+        style={styles.toastStyle('info')}
+        text1Style={styles.text1}
+        text2Style={styles.text2}
         />
     ),
 
