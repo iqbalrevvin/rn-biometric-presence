@@ -6930,6 +6930,11 @@ react-native-size-matters@^0.3.1:
   resolved "https://nxrm.jenius.tech/repository/npm-group/react-native-size-matters/-/react-native-size-matters-0.3.1.tgz#24d0cfc335a2c730f6d58bd7b43ea5a41be4b49f"
   integrity sha512-mKOfBLIBFBcs9br1rlZDvxD5+mAl8Gfr5CounwJtxI6Z82rGrMO+Kgl9EIg3RMVf3G855a85YVqHJL2f5EDRlw==
 
+react-native-splash-screen@^3.3.0:
+  version "3.3.0"
+  resolved "https://nxrm.jenius.tech/repository/npm-group/react-native-splash-screen/-/react-native-splash-screen-3.3.0.tgz#3af71ed17afe50fee69590a45aec399d071ead02"
+  integrity sha512-rGjt6HkoSXxMqH4SQUJ1gnPQlPJV8+J47+4yhgTIan4bVvAwJhEeJH7wWt9hXSdH4+VfwTS0GTaflj1Tw83IhA==
+
 react-native-toast-message@^2.1.5:
   version "2.1.5"
   resolved "https://nxrm.jenius.tech/repository/npm-group/react-native-toast-message/-/react-native-toast-message-2.1.5.tgz#550acb9c6c0f1ee49c6b57b65a56d34e297eb723"
