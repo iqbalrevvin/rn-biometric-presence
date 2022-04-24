@@ -12,6 +12,7 @@ import VersionText from '../../Components/VersionText';
 import { Colors, Images, Screen } from '../../Utility';
 import styles from './LoginScreen.styles';
 import Configs from './RenderLogin.config';
+import { get } from 'lodash';
 
 const { inputNameConstant: { EMAIL, PASSWORD } } = Configs;
 
@@ -108,11 +109,15 @@ const renderInputPassword = (props) => (
 );
 
 const _processSubmit = async (props) => {
-    const { navigation, setLoadingPage, loginMutation } = props.primaryProps;
+    const { navigation, setLoadingPage, loginMutation, setLogin } = props.primaryProps;
     const response = await loginMutation.mutateAsync(props.watchedValue);
     setLoadingPage(false, null);
     if (response?.data) {
-        if (response?.data?.success) navigation.replace(Screen.INDEX_SCREEN.name);
+        if (response?.data?.success) {
+          const token = get(response, 'data.output_data.token', null);
+          setLogin(token);
+          navigation.replace(Screen.INDEX_SCREEN.name);
+        }
         else showToastHandle(props, 'error', 'Login Gagal', response?.data?.message);
     } else {
         toastSwwHandle(props);
