@@ -1,6 +1,5 @@
-/* eslint-disable import/extensions */
 import React from 'react';
-import RenderWelcomeScreen from './RenderWelcomeScreen';
+import WelcomeScreenComponent from './WelcomeScreen.component';
 import Configs from './WelcomeScreen.config';
 
 const WelcomeScreen = ({ navigation }) => {
@@ -9,7 +8,7 @@ const WelcomeScreen = ({ navigation }) => {
     });
 
     return (
-      <RenderWelcomeScreen {...welcomeScreenProps()} />
+      <WelcomeScreenComponent {...welcomeScreenProps()} />
     );
 };
 

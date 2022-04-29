@@ -5,7 +5,7 @@ const initialState = {
     token: null,
 };
 
-const _loginAction = (state, payload) => ({
+const _loginAction = (state: any, payload: any) => ({
     ...state,
     loggedIn: true,
     token: payload,
@@ -16,7 +16,7 @@ const _logoutAction = () => ({
     token: null,
 });
 
-const AuthReducers = (state = initialState, action = null) => {
+const AuthReducers = (state = initialState, action: any) => {
     switch (action.type) {
         case Action.Auth.LOGIN:
             return _loginAction(state, action.payload);

@@ -1,8 +1,8 @@
 import React, { ReactNode } from 'react';
 import { RootStateOrAny, useSelector, useDispatch } from 'react-redux';
 import { loginAction } from '~Services/Redux/Actions/AuthAction';
-import RenderSplashScreen from './RenderSplashScreen';
-import { IndexProps } from './RenderSplashScreen.type';
+import SplashScreenComponent from './SplashScreen.component';
+import { IndexProps } from './SplashScreen.type';
 import Configs from './SplashScreen.config';
 
 const SplashScreenProps = (navigation: any, authState: any, dispatch: Function) => ({
@@ -17,7 +17,7 @@ const SplashScreen = (props: IndexProps): ReactNode => {
     const dispatch = useDispatch();
     return (
       <React.Fragment>
-        <RenderSplashScreen {...SplashScreenProps(props.navigation, authState, dispatch)} />
+        <SplashScreenComponent {...SplashScreenProps(props.navigation, authState, dispatch)} />
       </React.Fragment>
     );
 };

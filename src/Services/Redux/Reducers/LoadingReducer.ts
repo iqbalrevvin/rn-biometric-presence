@@ -5,13 +5,13 @@ const initialState = {
     loadingPageText: null,
 };
 
-const setLoadingPage = (state, payload) => ({
+const setLoadingPage = (state: any, payload: any) => ({
     ...state,
     loadingPage: payload.value,
     loadingPageText: payload.loadingText,
 });
 
-const LoadingReducer = (state = initialState, action = null) => {
+const LoadingReducer = (state = initialState, action: any) => {
     switch (action.type) {
         case Action.Loading.PAGE:
             return setLoadingPage(state, action.payload);

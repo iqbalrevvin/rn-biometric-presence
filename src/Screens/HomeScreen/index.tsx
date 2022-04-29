@@ -1,71 +1,56 @@
 import React from 'react';
-import { IndexProps } from './HomeScreen.type';
-import RenderHomeScreen from './RenderHomeScreen';
+import { RootStateOrAny, useSelector }  from 'react-redux';
+import { _getAttendanceLogs } from './HomeScreen.action';
+import { IndexProps, UseQueryProps } from './HomeScreen.type';
+import HomeScreenComponent from './HomeScreen.component';
+import { useInfiniteQuery } from 'react-query';
 
-const _getHomeScreenProps = (props: IndexProps, dataList: any) => ({
-    navigation: props.navigation,
-    dataList,
+const _getHomeScreenProps = (
+  props: IndexProps,
+  stateReducer: any,
+  useQueryProps: UseQueryProps,
+) => ({
+  navigation: props.navigation,
+  profileState: stateReducer.profile,
+  attendanceQuery: useQueryProps,
 });
 
-// eslint-disable-next-line max-lines-per-function
-const _getListData = () => {
-    const listData = [
-        {
-            id: 1,
-            time: '2021-05-10T11:31:54+00:00',
-            type: 'ClockIn',
-        },
-        {
-            id: 2,
-            time: '2021-05-10T11:31:54+00:00',
-            type: 'ClockOut',
-        },
-        {
-            id: 3,
-            time: '2021-05-10T11:31:54+00:00',
-            type: 'ClockOut',
-        },
-        {
-            id: 4,
-            time: '2021-05-10T11:31:54+00:00',
-            type: 'ClockOut',
-        },
-        {
-            id: 5,
-            time: '2021-05-10T11:31:54+00:00',
-            type: 'ClockOut',
-        },
-        {
-            id: 6,
-            time: '2021-05-10T11:31:54+00:00',
-            type: 'ClockOut',
-        },
-        {
-            id: 7,
-            time: '2021-05-10T11:31:54+00:00',
-            type: 'ClockOut',
-        },
-        {
-            id: 8,
-            time: '2021-05-10T11:31:54+00:00',
-            type: 'ClockOut',
-        },
-        {
-            id: 9,
-            time: '2021-05-10T11:31:54+00:00',
-            type: 'ClockOut',
-        },
-        {
-            id: 10,
-            time: '2021-05-10T11:31:54+00:00',
-            type: 'ClockOut',
-        },
-    ];
-    return listData;
+const _handleNextPageRequest = (lastPage: any) => {
+  if (lastPage?.output_data?.next_page_url != null) {
+    return lastPage.output_data.current_page + 1;
+  }
 };
 
-const HomeScreen = (props: IndexProps) => (
-  <RenderHomeScreen {..._getHomeScreenProps(props, _getListData())} />
-);
+const _useFetchingQuery = (stateReducer: any) => {
+    const {
+        data, isLoading, refetch, hasNextPage,
+        fetchNextPage, isFetching, isFetchingNextPage,
+        status, error,
+    } = useInfiniteQuery(
+        'attendanceLogs',
+        ({pageParam}) => _getAttendanceLogs(pageParam, stateReducer.auth.token),
+        { getNextPageParam: (lastPage) => _handleNextPageRequest(lastPage) }
+    );
+    return {
+        data, refetch, hasNextPage, fetchNextPage, isFetching,
+        isFetchingNextPage, isLoading, status, error,
+    };
+};
+
+const HomeScreen = (props: IndexProps) => {
+  const stateReducer = useSelector((state: RootStateOrAny) => state);
+  const {
+      data, refetch, hasNextPage, fetchNextPage, isFetching,
+      isFetchingNextPage, isLoading, status, error,
+    } = _useFetchingQuery(stateReducer);
+  const useQueryProps = {
+      data, refetch, hasNextPage, fetchNextPage, isFetching,
+      isFetchingNextPage, isLoading, status, error,
+    };
+  return (
+    <HomeScreenComponent {..._getHomeScreenProps(props, stateReducer, useQueryProps)}
+    />
+  );
+};
 
 export default HomeScreen;

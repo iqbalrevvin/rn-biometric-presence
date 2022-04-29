@@ -6,7 +6,7 @@ export interface Props {
     type?: any;
     color?: string;
     style?: any;
-    titleSize?: number;
+    titleSize?: any;
     titleBold?: boolean;
     onPress?: () => void;
 }

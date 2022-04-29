@@ -9,7 +9,7 @@ import styles from './SplashScreen.styles';
 import CGap from '~Components/CGap';
 import Animation from '~Utility/Animation';
 import VersionText from '~Components/VersionText';
-import { ContainerState, HookContainerState, Props } from './RenderSplashScreen.type';
+import { ContainerState, HookContainerState, Props } from './SplashScreen.type';
 
 /**
  * @description process of state container
@@ -104,7 +104,7 @@ const getContainerProps = (containerState: ContainerState) => ({
  * @param {Props} props
  * @returns {ReactNode}
  */
-const RenderSplashScreen = (props: Props): ReactNode => {
+const SplashScreenComponent = (props: Props): ReactNode => {
     const hookContainer = useHookContainerState();
     useDirectEffect(props);
     return (
@@ -118,8 +118,8 @@ const RenderSplashScreen = (props: Props): ReactNode => {
     );
 };
 
-RenderSplashScreen.displayName = Configs.displayName;
-RenderSplashScreen.defaultProps = Configs.defaultProps;
-RenderSplashScreen.propTypes = Configs.propTypes;
+SplashScreenComponent.displayName = Configs.displayName;
+SplashScreenComponent.defaultProps = Configs.defaultProps;
+SplashScreenComponent.propTypes = Configs.propTypes;
 
-export default RenderSplashScreen;
+export default SplashScreenComponent;

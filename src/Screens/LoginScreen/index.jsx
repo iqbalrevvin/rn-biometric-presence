@@ -1,10 +1,10 @@
-/* eslint-disable no-underscore-dangle */
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useMutation } from 'react-query';
-import RenderLoginScreen from './RenderLoginScreen';
+import LoginScreenComponent from './LoginScreen.component';
 import Configs from './RenderLogin.config';
 import { loginAction } from '~Services/Redux/Actions/AuthAction';
+import { setProfileAction } from '~Services/Redux/Actions/ProfileAction';
 import { loadingPageAction } from '~Services/Redux/Actions/LoadingAction';
 import { submitSignin } from './LoginScreen.action';
 
@@ -16,6 +16,7 @@ const _getLoginScreenProps = (props, mutation, stateReducer, dispatch) => ({
         loadingPageAction(loadingPage, loadingPageText),
     ),
     setLogin: (token) => dispatch(loginAction(token)),
+    setProfile: (payload) => dispatch(setProfileAction(payload)),
     loginMutation: mutation.loginMutation,
 });
 
@@ -26,7 +27,7 @@ const LoginScreen = (props) => {
         loginMutation: useMutation(submitSignin),
     };
     return (
-      <RenderLoginScreen {..._getLoginScreenProps(props, mutation, stateReducer, dispatch)} />
+      <LoginScreenComponent {..._getLoginScreenProps(props, mutation, stateReducer, dispatch)} />
     );
 };
 

@@ -9,7 +9,7 @@ import { Screen } from '../Utility';
 const screenOptionsConfig = ({ route }) => ({
     tabBarIcon: ({ focused, color, size }) => {
         let iconName;
-        size = focused ? 35 : 25;
+        size = focused ? 30 : 25;
         switch (route.name) {
             case 'Home':
                 iconName = focused ? 'home' : 'home';
@@ -21,7 +21,7 @@ const screenOptionsConfig = ({ route }) => ({
                 iconName = focused ? 'user' : 'user';
         }
         return (
-          <View>
+          <View style={{ top: 5 }}>
             <Icon
               name={iconName}
               size={size}
@@ -40,17 +40,24 @@ const tabBarOptionsConfig = {
         fontSize: 12,
         fontWeight: 'bold',
     },
+    style: {
+      height: 55,
+      paddingBottom: 5,
+    },
 };
 
 const Tab = createBottomTabNavigator();
 
 const TabNavigator = (props) => (
-  <Tab.Navigator tabBarOptions={tabBarOptionsConfig} screenOptions={screenOptionsConfig}>
+  <Tab.Navigator
+    tabBarOptions={tabBarOptionsConfig}
+    screenOptions={screenOptionsConfig}
+  >
     <Tab.Screen
       name={Screen.HOME_SCREEN.name}
       component={Screen.HOME_SCREEN.component}
       {...props}
-        />
+    />
   </Tab.Navigator>
 );
 
