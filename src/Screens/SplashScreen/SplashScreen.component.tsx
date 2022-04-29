@@ -9,7 +9,7 @@ import styles from './SplashScreen.styles';
 import CGap from '~Components/CGap';
 import Animation from '~Utility/Animation';
 import VersionText from '~Components/VersionText';
-import { ContainerState, HookContainerState, Props } from './RenderSplashScreen.type';
+import { ContainerState, HookContainerState, Props } from './SplashScreen.type';
 
 /**
  * @description process of state container

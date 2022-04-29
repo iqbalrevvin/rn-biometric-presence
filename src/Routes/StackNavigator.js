@@ -48,6 +48,7 @@ const StackNavigator = () => (
     <Stack.Screen name={Screen.WELCOME_SCREEN.name} component={Screen.WELCOME_SCREEN.component} />
     <Stack.Screen name={Screen.LOGIN_SCREEN.name} component={Screen.LOGIN_SCREEN.component} />
     <Stack.Screen name={Screen.INDEX_SCREEN.name} component={Screen.INDEX_SCREEN.component} />
+    <Stack.Screen name={Screen.PRESENCE_SCREEN.name} component={Screen.PRESENCE_SCREEN.component} />
   </Stack.Navigator>
 );
 

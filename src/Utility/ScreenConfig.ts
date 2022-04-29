@@ -3,6 +3,7 @@ import SplashScreen from '../Screens/SplashScreen';
 import WelcomeScreen from '../Screens/WelcomeScreen';
 import HomeScreen from '../Screens/HomeScreen';
 import LoginScreen from '../Screens/LoginScreen';
+import PresenceScreen from '~Screens/PresenceScreen';
 
 const Screen = {
     SPLASH_SCREEN: {
@@ -24,6 +25,10 @@ const Screen = {
     INDEX_SCREEN: {
         name: 'Index',
         component: TabNavigator,
+    },
+    PRESENCE_SCREEN: {
+        name: 'Presence',
+        component: PresenceScreen,
     },
 };
 

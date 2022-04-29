@@ -4,7 +4,7 @@ import {Divider} from 'react-native-elements';
 import moment from 'moment';
 import 'moment/locale/id';
 import Container from '~Components/Container';
-import {Colors, Images} from '~Utility';
+import {Colors, Images, Screen} from '~Utility';
 import styles from './HomeScreen.styles';
 import CText from '~Components/CText';
 import Configs from './HomeScreen.config';
@@ -100,25 +100,40 @@ const _renderCardShiftInfo = () => (
   </View>
 );
 
-const _renderButtonPresence = () => (
-  <View style={styles.buttonPresenceContainer}>
-    <View style={styles.buttonPresenceSection}>
-      <CButtonRegular titleBold title="CLOCK IN" color={Colors.primary} />
-    </View>
-    <View style={styles.buttonPresenceSection}>
-      <CButtonRegular titleBold title="CLOCK OUT" color={Colors.primary} />
-    </View>
+const _renderButtonAction = (title: string, onNavigate: () => void) => (
+  <View style={styles.buttonPresenceSection}>
+    <CButtonRegular
+      titleBold title={title}
+      color={Colors.primary}
+      onPress={onNavigate}
+    />
   </View>
 );
 
-const _renderInfoActionCard = () => (
+const _renderButtonPresence = (props: HeaderSectionProps) => {
+  const { navigation } = props.primaryProps;
+  return (
+    <View style={styles.buttonPresenceContainer}>
+      {_renderButtonAction(
+        'CLOCK IN',
+        () => navigation.navigate(Screen.PRESENCE_SCREEN.name)
+      )}
+      {_renderButtonAction(
+        'CLOCK IN',
+        () => navigation.navigate(Screen.PRESENCE_SCREEN.name)
+      )}
+    </View>
+  );
+};
+
+const _renderInfoActionCard = (props: HeaderSectionProps) => (
   <View style={styles.infoActionCard}>
     {_renderCardNameInfo()}
     {_renderCardShiftInfo()}
     <CGap height={10} />
     <Divider orientation="horizontal" />
     <CGap height={20} />
-    {_renderButtonPresence()}
+    {_renderButtonPresence(props)}
     <CGap height={10} />
   </View>
 );
@@ -131,7 +146,7 @@ const _renderHeaderSection = (props: HeaderSectionProps) => {
       <CGap height={10} />
       {_renderTimeSection(props)}
       <CGap height={20} />
-      {_renderInfoActionCard()}
+      {_renderInfoActionCard(props)}
     </View>
   );
 };

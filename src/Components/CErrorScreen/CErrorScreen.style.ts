@@ -20,7 +20,7 @@ const styles = StyleSheet.create<Styles>({
         textAlign: 'center',
     },
     buttonContainerSection: {
-        paddingHorizontal: 100
+        paddingHorizontal: 100,
     },
 });
 

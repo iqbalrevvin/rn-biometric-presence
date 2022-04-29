@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import { Image, View } from 'react-native';
-import { Colors, Images } from '../../Utility';
+import { Images } from '../../Utility';
 import styles from './CErrorScreen.style';
 import Configs, { Props } from './CErrorScreen.config';
 import CText from '~Components/CText';
