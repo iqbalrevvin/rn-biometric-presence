@@ -29,20 +29,20 @@ const _renderTitleApp = () => (
     </Fragment>
 );
 
-const RenderWelcomeScreen = () => (
+const WelcomeScreenComponent = () => (
     <Container withOverlayLoading={false}>
         <View style={styles.container}>
             {_renderLogo()}
             {_renderTitleApp()}
         </View>
         <View style={styles.versionInfoContainer}>
-            <VersionText version='0.1.0' />
+            <VersionText version="0.1.0" />
         </View>
     </Container>
 );
 
-RenderWelcomeScreen.displayName = Configs.displayName;
-RenderWelcomeScreen.defaultProps = Configs.defaultProps;
-RenderWelcomeScreen.propTypes = Configs.propTypes;
+WelcomeScreenComponent.displayName = Configs.displayName;
+WelcomeScreenComponent.defaultProps = Configs.defaultProps;
+WelcomeScreenComponent.propTypes = Configs.propTypes;
 
-export default RenderWelcomeScreen;
+export default WelcomeScreenComponent;

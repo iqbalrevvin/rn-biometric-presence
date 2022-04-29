@@ -2,7 +2,7 @@ import React from 'react';
 import { RootStateOrAny, useSelector }  from 'react-redux';
 import { _getAttendanceLogs } from './HomeScreen.action';
 import { IndexProps, UseQueryProps } from './HomeScreen.type';
-import RenderHomeScreen from './RenderHomeScreen';
+import HomeScreenComponent from './HomeScreen.component';
 import { useInfiniteQuery } from 'react-query';
 
 const _getHomeScreenProps = (
@@ -48,7 +48,7 @@ const HomeScreen = (props: IndexProps) => {
       isFetchingNextPage, isLoading, status, error,
     };
   return (
-    <RenderHomeScreen {..._getHomeScreenProps(props, stateReducer, useQueryProps)}
+    <HomeScreenComponent {..._getHomeScreenProps(props, stateReducer, useQueryProps)}
     />
   );
 };

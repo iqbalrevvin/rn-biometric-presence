@@ -217,7 +217,7 @@ const _getListHistoryProps = (primaryProps: Props) => ({
   primaryProps,
 });
 
-const RenderHomeScreen = (props: Props) => {
+const HomeScreenComponent = (props: Props) => {
   const hookContainer = useHookContainerState();
   const hookTimer = useHookTimeState();
   const headerSectionProps = _getHeaderSectionProps(props, hookTimer);
@@ -233,7 +233,7 @@ const RenderHomeScreen = (props: Props) => {
   );
 };
 
-RenderHomeScreen.defaultProps = Configs.defaultProps;
-RenderHomeScreen.propTypes = Configs.propTypes;
+HomeScreenComponent.defaultProps = Configs.defaultProps;
+HomeScreenComponent.propTypes = Configs.propTypes;
 
-export default RenderHomeScreen;
+export default HomeScreenComponent;

@@ -11,7 +11,7 @@ const CButtonRegular = (props: Props) => (
     loading={props.loading}
     disabled={props.disabled}
     type={props.type}
-    buttonStyle={[props.style, styles.container(props.color)]}
+    buttonStyle={[props.style, styles.container(props.color, props.type)]}
     titleStyle={styles.titleSection(props.titleSize, props.titleBold)}
     onPress={props.onPress}
     />

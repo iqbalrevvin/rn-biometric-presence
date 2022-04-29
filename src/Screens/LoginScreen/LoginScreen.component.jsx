@@ -213,7 +213,7 @@ const getContentProps = (primaryProps, hookContainer, watchedValue, formMethod) 
     formMethod,
 });
 
-const RenderLoginScreen = (props) => {
+const LoginScreenComponent = (props) => {
     const { watchedValue, formMethods } = _initiateForm();
     const hookContainer = useHookContainerState();
     const contentProps = getContentProps(props, hookContainer, watchedValue, formMethods);
@@ -227,4 +227,4 @@ const RenderLoginScreen = (props) => {
     );
 };
 
-export default RenderLoginScreen;
+export default LoginScreenComponent;
