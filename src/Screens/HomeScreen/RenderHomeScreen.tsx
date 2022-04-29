@@ -3,14 +3,14 @@ import {FlatList, Image, View} from 'react-native';
 import {Divider} from 'react-native-elements';
 import moment from 'moment';
 import 'moment/locale/id';
-import Container from '../../Components/Container';
-import {Colors, Images} from '../../Utility';
+import Container from '~Components/Container';
+import {Colors, Images} from '~Utility';
 import styles from './HomeScreen.styles';
-import CText from '../../Components/CText';
+import CText from '~Components/CText';
 import Configs from './HomeScreen.config';
-import CGap from '../../Components/CGap';
-import CButtonRegular from '../../Components/Buttons/CButtonRegular';
-import CListItemRegular from '../../Components/CListItemRegular';
+import CGap from '~Components/CGap';
+import CButtonRegular from '~Components/Buttons/CButtonRegular';
+import CListItemRegular from '~Components/CListItemRegular';
 import {
   ContainerState,
   HeaderSectionProps,
@@ -18,7 +18,9 @@ import {
   HookTimeState,
   ListHistoryProps,
   Props,
+  UseQueryProps,
 } from './HomeScreen.type';
+import CErrorScreen from '~Components/CErrorScreen';
 
 const useHookContainerState = (): HookContainerState => {
   const [containerState, setContainerState] = React.useState({
@@ -134,22 +136,57 @@ const _renderHeaderSection = (props: HeaderSectionProps) => {
   );
 };
 
+const _handleFooterTextInfo = (attendanceQuery: UseQueryProps) => {
+  const { isFetchingNextPage } = attendanceQuery;
+  const _renderText = isFetchingNextPage ? 'Load More...' : 'No More Data';
+  return (
+    <View style={styles.footerTextInfoContainer}>
+      <CText color={Colors.grey500}>{_renderText}</CText>
+    </View>
+  );
+};
+
+const _handleLoadMore = (attendanceQuery: UseQueryProps) => {
+  if (attendanceQuery.hasNextPage) {
+    attendanceQuery.fetchNextPage();
+  }
+};
+
+const _handleRefetchData = (attendanceQuery: UseQueryProps) => {
+  attendanceQuery.refetch({
+    refetchPage: (_page: any, index: number) => index === 0,
+  });
+};
+
 const _renderItemList = ({item}: any) => (
   <CListItemRegular
-    title={moment(item.time).format('LLL')}
-    subtitle={item.type}
+    title={moment(item?.created_at).format('LLL')}
+    subtitle={item?.tipe}
     withArrow
     withDivider
   />
 );
 
+const _getOutputData = (attendanceQuery: UseQueryProps) => {
+  const outputData = attendanceQuery?.data?.pages.map(
+    (page: any)=> page?.output_data?.data
+  ).flat();
+  const result = outputData ? outputData : [];
+  return result;
+};
+
 const _renderFlatList = (props: ListHistoryProps) => {
-  const {primaryProps} = props;
+  const {primaryProps: { attendanceQuery }} = props;
   return (
     <FlatList
-      keyExtractor={item => item.id.toString()}
-      data={primaryProps.dataList}
+      keyExtractor={(item) => item?.id.toString()}
+      data={_getOutputData(attendanceQuery)}
       renderItem={_renderItemList}
+      onRefresh={() => _handleRefetchData(attendanceQuery)}
+      refreshing={attendanceQuery.isFetching && !attendanceQuery.isFetchingNextPage}
+      onEndReached={() => _handleLoadMore(attendanceQuery)}
+      onEndReachedThreshold={0.5}
+      ListFooterComponent={_handleFooterTextInfo(attendanceQuery)}
     />
   );
 };
@@ -185,11 +222,13 @@ const RenderHomeScreen = (props: Props) => {
   const hookTimer = useHookTimeState();
   const headerSectionProps = _getHeaderSectionProps(props, hookTimer);
   const listHistoryProps = _getListHistoryProps(props);
+  const errorHitQuery = props.attendanceQuery?.data?.pages[0].name === 'Error';
   _useTimeEffect(hookTimer);
   return (
     <Container {..._getContainerProps(hookContainer.containerState)}>
       {_renderHeaderSection(headerSectionProps)}
-      {_renderListHistoryPresence(listHistoryProps)}
+      {errorHitQuery && <CErrorScreen onActionPress={() => _handleRefetchData(props.attendanceQuery)} />}
+      {!errorHitQuery && _renderListHistoryPresence(listHistoryProps)}
     </Container>
   );
 };

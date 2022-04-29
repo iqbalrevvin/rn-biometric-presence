@@ -109,19 +109,18 @@ const renderInputPassword = (props) => (
 );
 
 const _processSubmit = async (props) => {
-    const { navigation, setLoadingPage, loginMutation, setLogin } = props.primaryProps;
+    const { navigation, setLoadingPage, loginMutation, setLogin, setProfile } = props.primaryProps;
     const response = await loginMutation.mutateAsync(props.watchedValue);
     setLoadingPage(false, null);
     if (response?.data) {
         if (response?.data?.success) {
           const token = get(response, 'data.output_data.token', null);
           setLogin(token);
+          setProfile(response.data.output_data);
           navigation.replace(Screen.INDEX_SCREEN.name);
         }
         else showToastHandle(props, 'error', 'Login Gagal', response?.data?.message);
-    } else {
-        toastSwwHandle(props);
-    }
+    } else toastSwwHandle(props);
 };
 
 const submitAction = async (props) => {

@@ -6,6 +6,9 @@ const Action = {
         LOGIN: 'LOGIN',
         LOGOUT: 'LOGOUT',
     },
+    Profile: {
+        SET_PROFILE: 'SET-PROFILE',
+    },
 };
 
 export default Action;

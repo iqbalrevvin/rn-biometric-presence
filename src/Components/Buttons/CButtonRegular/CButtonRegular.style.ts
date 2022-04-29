@@ -2,6 +2,7 @@ export default {
     container: (color: any) => ({
         backgroundColor: color || null,
         padding: 12,
+        borderWidth: 1,
     }),
     titleSection: (titleSize: number, titleBold: any) => ({
         fontFamily: titleBold ? 'Muli-Bold' : 'Muli-SemiBold',
