@@ -1,4 +1,3 @@
-/* eslint-disable import/extensions */
 import React from 'react';
 import WelcomeScreenComponent from './WelcomeScreen.component';
 import Configs from './WelcomeScreen.config';

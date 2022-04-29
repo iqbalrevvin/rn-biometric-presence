@@ -2,7 +2,7 @@ import React, { ReactNode } from 'react';
 import { RootStateOrAny, useSelector, useDispatch } from 'react-redux';
 import { loginAction } from '~Services/Redux/Actions/AuthAction';
 import SplashScreenComponent from './SplashScreen.component';
-import { IndexProps } from './RenderSplashScreen.type';
+import { IndexProps } from './SplashScreen.type';
 import Configs from './SplashScreen.config';
 
 const SplashScreenProps = (navigation: any, authState: any, dispatch: Function) => ({
