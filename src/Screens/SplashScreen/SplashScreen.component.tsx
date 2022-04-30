@@ -104,7 +104,7 @@ const getContainerProps = (containerState: ContainerState) => ({
  * @param {Props} props
  * @returns {ReactNode}
  */
-const SplashScreenComponent = (props: Props): ReactNode => {
+const SplashScreenComponent = (props: Props) => {
     const hookContainer = useHookContainerState();
     useDirectEffect(props);
     return (

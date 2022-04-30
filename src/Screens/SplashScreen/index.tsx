@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react';
+import React from 'react';
 import { RootStateOrAny, useSelector, useDispatch } from 'react-redux';
 import { loginAction } from '~Services/Redux/Actions/AuthAction';
 import SplashScreenComponent from './SplashScreen.component';
@@ -12,7 +12,7 @@ const SplashScreenProps = (navigation: any, authState: any, dispatch: Function) 
     navigation,
 });
 
-const SplashScreen = (props: IndexProps): ReactNode => {
+const SplashScreen = (props: IndexProps) => {
     const authState = useSelector((state: RootStateOrAny) => state.auth);
     const dispatch = useDispatch();
     return (
