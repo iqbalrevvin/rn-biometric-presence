@@ -116,11 +116,11 @@ const _renderButtonPresence = (props: HeaderSectionProps) => {
     <View style={styles.buttonPresenceContainer}>
       {_renderButtonAction(
         'CLOCK IN',
-        () => navigation.navigate(Screen.PRESENCE_SCREEN.name)
+        () => navigation.navigate(Screen.PRESENCE_SCREEN.name, {type: 'clockIn'})
       )}
       {_renderButtonAction(
-        'CLOCK IN',
-        () => navigation.navigate(Screen.PRESENCE_SCREEN.name)
+        'CLOCK OUT',
+        () => navigation.navigate(Screen.PRESENCE_SCREEN.name, {type: 'clockOut'})
       )}
     </View>
   );

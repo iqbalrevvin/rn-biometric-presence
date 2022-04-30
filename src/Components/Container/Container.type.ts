@@ -13,6 +13,12 @@ export interface ContainerProps {
     loadingText?: string;
     scrollView?: boolean;
     backgroundColor?: any;
+    headerColor?: string;
+    headerTitle?: string;
+    headerLeftIcon?: string;
+    headerLeftIconOnPress?: () => void;
+    headerRightIcon?: string;
+    headerRightIconOnPress?: () => void;
 }
 
 export interface ContainerState {

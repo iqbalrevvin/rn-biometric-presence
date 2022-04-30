@@ -6,6 +6,7 @@ interface Styles {
 
 const styles = StyleSheet.create<Styles>({
     contentContainer: {
+        flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
     },

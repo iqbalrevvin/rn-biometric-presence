@@ -5,6 +5,7 @@ import { IndexProps } from './PresenceScreen.type';
 
 const _getPresenceScreenProps = (props: IndexProps, stateReducer: any) => ({
     navigation: props.navigation,
+    route: props.route,
     loadingPage: stateReducer.loading.loadingPage,
     loadingPageText: stateReducer.loading.loadingPageText,
 });
