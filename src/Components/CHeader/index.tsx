@@ -18,7 +18,7 @@ const centerComponentObject = (title: string) => ({
   style: {
     color: Colors.white,
     fontFamily: 'Muli-Bold',
-    fontSize: 16,
+    fontSize: 17,
   },
 });
 
@@ -31,11 +31,22 @@ const rightComponentObject = (
   onPress: rightIconOnPress,
 });
 
+const _getContainerStyle = (noBorder: boolean|any) => {
+  if (noBorder) {
+    return {
+      borderBottomWidth: 0,
+    };
+  }
+};
+
 const CHeader = (props: Props) => {
-  const {headerColor, leftIcon, leftIconOnPress, title, rightIcon, rightIconOnPress} = props;
+  const {
+    headerColor, leftIcon, leftIconOnPress, noBorder,
+    title, rightIcon, rightIconOnPress, placement,
+  } = props;
   return (
-    <Header
-      placement="left"
+    <Header placement={placement}
+      containerStyle={_getContainerStyle(noBorder)}
       backgroundColor={headerColor}
       leftComponent={leftComponentObject(leftIcon, leftIconOnPress)} // Icon With Ionicons
       centerComponent={centerComponentObject(title)}

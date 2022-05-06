@@ -18,7 +18,7 @@ const toastSwwText = {
 };
 
 const _getHeaderProps = (props: ContainerProps) => {
-    const { headerColor, headerTitle, headerLeftIcon, 
+    const { headerColor, headerTitle, headerLeftIcon,
         headerLeftIconOnPress, headerRightIcon, headerRightIconOnPress,
     } = props;
 

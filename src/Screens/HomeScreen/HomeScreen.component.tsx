@@ -21,6 +21,7 @@ import {
   UseQueryProps,
 } from './HomeScreen.type';
 import CErrorScreen from '~Components/CErrorScreen';
+import CHeader from '~Components/CHeader';
 
 const useHookContainerState = (): HookContainerState => {
   const [containerState, setContainerState] = React.useState({
@@ -138,10 +139,18 @@ const _renderInfoActionCard = (props: HeaderSectionProps) => (
   </View>
 );
 
+const _getHeaderComponentSection = () => ({
+  title: 'Biometric Presence',
+  placement: 'center',
+  leftIcon: '',
+  noBorder: true,
+});
+
 const _renderHeaderSection = (props: HeaderSectionProps) => {
   const {bgImage2} = Images;
   return (
     <View style={styles.headerContainer}>
+      <CHeader {..._getHeaderComponentSection()} />
       <Image style={styles.headerImageSection} source={bgImage2} />
       <CGap height={10} />
       {_renderTimeSection(props)}

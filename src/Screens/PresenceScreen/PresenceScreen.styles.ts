@@ -2,13 +2,15 @@ import { StyleSheet, ViewStyle } from 'react-native';
 
 interface Styles {
     contentContainer: ViewStyle;
+    mapViewContainer: ViewStyle;
 }
 
 const styles = StyleSheet.create<Styles>({
     contentContainer: {
         flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center',
+    },
+    mapViewContainer: {
+        height: 200,
     },
 });
 

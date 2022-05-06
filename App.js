@@ -9,15 +9,15 @@ import Routes from './src/Routes';
 import { Persistor, Store } from './src/Services/Redux/store';
 import { toastConfig } from '~Components/Toast/toast.config';
 import SplashScreen from 'react-native-splash-screen';
+import { enableLatestRenderer } from 'react-native-maps';
 
+enableLatestRenderer();
 const queryClient = new QueryClient();
 
 const App = () => {
-
   React.useEffect(() => {
     SplashScreen.hide();
   });
-
   return (
     <QueryClientProvider client={queryClient}>
       <ThemeProvider>

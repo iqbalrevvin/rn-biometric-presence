@@ -1,12 +1,14 @@
-import { Colors } from '~Utility';
+import Colors from '~Utility/Colors';
 
 const defaultProps = {
-    headerColor: '#005CEE',
+    headerColor: Colors.primary,
     leftIcon: 'arrow-back',
     leftIconOnPress: () => {},
     title: 'Title Header',
     rightIcon: '',
     rightIconOnPress: () => {},
+    placement: 'left',
+    noBorder: false,
 };
 
 export interface Props {
@@ -16,6 +18,8 @@ export interface Props {
     title: string;
     rightIcon?: string;
     rightIconOnPress?: () => void;
+    placement?: string|any;
+    noBorder?: boolean|any;
 }
 
 export default {
