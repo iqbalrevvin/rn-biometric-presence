@@ -50,6 +50,10 @@
       "skipComments": true,
       "skipBlankLines": true
     }],
+    "max-len": ["error", {
+      "code": 110,
+      "ignoreComments": true
+    }],
     "prettier/prettier": "off",
     "react-native/no-unused-styles": "warn",
     "react-native/no-inline-styles": "error",
