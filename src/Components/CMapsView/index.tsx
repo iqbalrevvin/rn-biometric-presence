@@ -22,6 +22,7 @@ const CMapsView = (props: Props) => (
   <View style={styles.container}>
     <MapView showsUserLocation zoomTapEnabled
       zoomEnabled zoomControlEnabled
+      minZoomLevel={10}
       provider={PROVIDER_GOOGLE}
       style={styles.map}
       initialRegion={_getInitialRegionDataObject()}
