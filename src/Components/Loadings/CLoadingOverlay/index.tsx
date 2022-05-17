@@ -18,7 +18,7 @@ const CLoadingOverlay = ({ loadingText }: CLoadingOverlayProps) => (
       <CGap />
       { loadingText && (
         <CText semiBold size={15}>{loadingText}</CText>
-            )}
+      )}
     </View>
   </Overlay>
 );

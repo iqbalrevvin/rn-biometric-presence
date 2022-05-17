@@ -14,6 +14,7 @@ import CText from '~Components/CText';
 import CButtonRegular from '~Components/Buttons/CButtonRegular';
 import CCard from '~Components/CCard';
 import CGap from '~Components/CGap';
+import { scaleFont } from '~Utility/Size';
 
 const useHookContainerState = (): HookContainerState => {
   const [containerState, setContainerState] = useState({
@@ -39,13 +40,14 @@ const _getLocationEffect = (setLocation: any) => {
     Geolocation.getCurrentPosition(
       position => {
         const {latitude, longitude} = position.coords;
+        // alert(`Latitude: ${latitude} Longitude: ${longitude}`);
         setLocation({
           latitude: latitude,
           longitude: longitude,
         });
       },
       () => Alert.alert('Oops', 'Masalah dalam mengambil titik lokasi anda!'),
-      {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000},
+      {enableHighAccuracy: false, timeout: 20000, maximumAge: 1000},
     );
   }, [setLocation]);
 };
@@ -84,19 +86,19 @@ const _renderTouchablePresence = (props: Props) => {
 // eslint-disable-next-line max-lines-per-function
 const _renderInfoCardAttendance = () => (
   <CCard elevation={2} borderRadius={5}>
-      <CText semiBold size={11}>
+      <CText semiBold size={scaleFont(11)}>
         Pastikan perangkat anda mendukung biometrik sidik jari
       </CText>
       <CGap height={5} />
-      <CText semiBold size={11}>
+      <CText semiBold size={scaleFont(11)}>
         Pastikan sidik jari anda sudah di konfigurasi di pengaturan perangkat
       </CText>
       <CGap height={5} />
-      <CText semiBold size={11}>
+      <CText semiBold size={scaleFont(11)}>
         Pastikan ID Biometrik perangkat anda berhasil di daftarkan ke server
       </CText>
       <CGap height={5} />
-      <CText semiBold size={11}>
+      <CText semiBold size={scaleFont(11)}>
         Pastikan login dengan akun anda sendiri di saat pendaftaran ID Biometrik perangkat
       </CText>
   </CCard>

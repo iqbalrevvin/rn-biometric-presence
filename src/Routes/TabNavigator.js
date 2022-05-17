@@ -5,6 +5,7 @@ import { View } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-vector-icons/AntDesign';
 import { Screen } from '../Utility';
+import styles from './TabNavigator.styles';
 
 const screenOptionsConfig = ({ route }) => ({
     tabBarIcon: ({ focused, color, size }) => {
@@ -21,11 +22,11 @@ const screenOptionsConfig = ({ route }) => ({
                 iconName = focused ? 'user' : 'user';
         }
         return (
-          <View style={{ top: 5 }}>
+          <View style={styles.tabIconContainer}>
             <Icon
               name={iconName}
               size={size}
-              style={!focused ? { color: 'gray', fontWeight: 'bold' } : { fontSize: size, color }}
+              style={styles.tabIconSection(focused, size, color)}
                 />
           </View>
         );

@@ -1,5 +1,5 @@
 export default {
-    container: (borderRadius, borderWidth, elevation) => ({
+    container: (borderRadius?: number, borderWidth?: number, elevation?: number) => ({
         borderRadius,
         elevation,
         borderWidth,
@@ -8,11 +8,10 @@ export default {
         backgroundColor: 'green',
         bottom: 15,
     },
-    liniarProgressSection: (borderRadius) => ({
+    liniarProgressSection: (borderRadius?: number) => ({
         width: '109%',
         height: 5,
         borderRadius: borderRadius || 0,
-        position: 'absolute',
         margin: 0,
         marginLeft: 0,
         marginRight: 0,

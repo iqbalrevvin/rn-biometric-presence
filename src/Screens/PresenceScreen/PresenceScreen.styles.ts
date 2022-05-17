@@ -1,5 +1,7 @@
 import { ImageStyle, StyleSheet, ViewStyle } from 'react-native';
+import Size from '~Utility/Size';
 
+const { scaleSize, scaleWidth, scaleHeight } = Size;
 interface Styles {
     contentContainer: ViewStyle;
     mapViewContainer: ViewStyle;
@@ -13,20 +15,20 @@ const styles = StyleSheet.create<Styles>({
         flex: 1,
     },
     mapViewContainer: {
-        height: 200,
+        height: scaleHeight(175),
     },
     contentPresenceTitle: {
         alignItems: 'center',
-        marginTop: 10,
+        marginTop: scaleHeight(10),
     },
     biometricLogo: {
-        marginTop: 10,
-        height: 200,
-        width: 175,
+        marginTop: scaleHeight(5),
+        height: scaleHeight(175),
+        width: scaleWidth(165),
         resizeMode: 'stretch',
     },
     buttonFooterContainer: {
-        padding: 5,
+        padding: scaleSize(5),
     },
 });
 
