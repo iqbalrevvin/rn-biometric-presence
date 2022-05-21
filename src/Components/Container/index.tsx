@@ -35,7 +35,7 @@ const _getHeaderProps = (props: ContainerProps) => {
 // eslint-disable-next-line max-lines-per-function
 const Container = (props: ContainerProps) => {
   const {
-      showToast, toastSww, toastType,
+      showToast, toastSww, toastType, toastTopOffset,
       toastTitle, toastSubTitle, headerTitle,
 } = props;
   // eslint-disable-next-line complexity
@@ -45,7 +45,7 @@ const Container = (props: ContainerProps) => {
         type: toastSww ? 'error' : toastType,
         text1: toastSww ? toastSwwText.title : toastTitle,
         text2: toastSww ? toastSwwText.subtitle : toastSubTitle,
-        topOffset: 0,
+        topOffset: toastTopOffset || 0,
         visibilityTime: 2500,
       });
     }

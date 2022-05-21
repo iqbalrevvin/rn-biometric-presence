@@ -6,6 +6,7 @@ export interface ContainerProps {
     barType?: any;
     showToast?: boolean;
     toastSww?: boolean;
+    toastTopOffset?: number;
     toastType?: string;
     toastTitle?: string;
     toastSubTitle?: string;
@@ -27,6 +28,12 @@ export interface ContainerState {
     barType: string;
     withOverlayLoading: boolean;
     loadingText: string;
+    showToast: boolean;
+    toastSww: boolean;
+    toastTopOffset: number;
+    toastType: string;
+    toastTitle: string;
+    toastSubTitle: string;
 }
 
 type ContainerStateSetter = React.Dispatch<React.SetStateAction<ContainerState>>;

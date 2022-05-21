@@ -8,6 +8,7 @@ const Action = {
     },
     Profile: {
         SET_PROFILE: 'SET-PROFILE',
+        SET_BIOMETRIC_ID: 'SET-BIOMETRIC-ID',
     },
 };
 

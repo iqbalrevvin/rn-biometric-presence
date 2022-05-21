@@ -1,5 +1,6 @@
 import { ImageStyle, StyleSheet, ViewStyle } from 'react-native';
 import Size from '~Utility/Size';
+import Colors from '../../Utility/Colors';
 
 const { scaleSize, scaleWidth, scaleHeight } = Size;
 interface Styles {
@@ -8,6 +9,7 @@ interface Styles {
     contentPresenceTitle: ViewStyle;
     biometricLogo: ImageStyle;
     buttonFooterContainer: ViewStyle;
+    loadingMapContainer: ViewStyle;
 }
 
 const styles = StyleSheet.create<Styles>({
@@ -29,6 +31,11 @@ const styles = StyleSheet.create<Styles>({
     },
     buttonFooterContainer: {
         padding: scaleSize(5),
+    },
+    loadingMapContainer: {
+        height: '100%',
+        alignItems: 'center',
+        backgroundColor: Colors.grey100,
     },
 });
 

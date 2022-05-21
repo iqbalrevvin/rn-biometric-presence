@@ -14,6 +14,13 @@ const persistedReducer = persistReducer(persistConfig, Reducer);
 
 let composeEnhanchers = compose;
 
+declare global {
+    // eslint-disable-next-line no-unused-vars
+    interface Window {
+        __REDUX_DEVTOOLS_EXTENSION_COMPOSE__?: typeof compose;
+    }
+}
+
 if (__DEV__) {
     composeEnhanchers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 }

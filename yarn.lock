@@ -6853,6 +6853,11 @@ react-native-appstate-hook@^1.0.6:
   resolved "https://nxrm.jenius.tech/repository/npm-group/react-native-appstate-hook/-/react-native-appstate-hook-1.0.6.tgz#cbc16e7b89cfaea034cabd999f00e99053cabd06"
   integrity sha512-0hPVyf5yLxCSVrrNEuGqN1ZnSSj3Ye2gZex0NtcK/AHYwMc0rXWFNZjBKOoZSouspqu3hXBbQ6NOUSTzrME1AQ==
 
+react-native-biometrics@^2.1.4:
+  version "2.1.4"
+  resolved "https://nxrm.jenius.tech/repository/npm-group/react-native-biometrics/-/react-native-biometrics-2.1.4.tgz#e201e9f18baeb560eeaba8d41fbd4f90d04152fe"
+  integrity sha512-Ek7NmzgHB4rot2DdzV9Q3pzxFjnEFipGSFsmWZw5vcM9vkMoebhz8d8UYgsp0efroyeLITDNHwcFGEzq8XW9Kg==
+
 react-native-codegen@^0.0.8:
   version "0.0.8"
   resolved "https://nxrm.jenius.tech/repository/npm-group/react-native-codegen/-/react-native-codegen-0.0.8.tgz#b7796a54074139d956fff2862cf1285db43c891b"

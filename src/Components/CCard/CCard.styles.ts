@@ -5,7 +5,6 @@ export default {
         borderWidth,
     }),
     liniarProgressContainer: {
-        backgroundColor: 'green',
         bottom: 15,
     },
     liniarProgressSection: (borderRadius?: number) => ({
