@@ -26,8 +26,6 @@ export interface ContainerState {
     backgroundColor: string;
     barColor: string;
     barType: string;
-    withOverlayLoading: boolean;
-    loadingText: string;
     showToast: boolean;
     toastSww: boolean;
     toastTopOffset: number;

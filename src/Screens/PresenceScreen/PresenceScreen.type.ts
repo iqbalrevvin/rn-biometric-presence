@@ -12,6 +12,7 @@ export interface Props {
     loadingPageText: string;
     hitSaveBiometricIdMutation: any;
     hitPresenceMutation: any;
+    setLoadingPage: any;
     setBiometricIdDispatch: any;
 }
 
@@ -38,6 +39,7 @@ export interface BiometricProps {
     primaryProps: Props,
     hookContainer: HookContainerState,
     hookBiometric: HookBiometricState,
+    hookLocation: HookLocationState
 }
 
 export interface dataSaveBiometric {

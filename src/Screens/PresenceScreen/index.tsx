@@ -2,6 +2,7 @@ import React from 'react';
 import { useMutation } from 'react-query';
 import { useDispatch, useSelector } from 'react-redux';
 import { setBiometricIdAction } from '~Services/Redux/Actions/BiometricAction';
+import { loadingPageAction } from '~Services/Redux/Actions/LoadingAction';
 import { saveBiometricId, submitHitPresence } from './PresenceScreen.action';
 import PresenceScreenComponent from './PresenceScreen.component';
 import { IndexProps } from './PresenceScreen.type';
@@ -13,6 +14,9 @@ const _getPresenceScreenProps = (props: IndexProps, dispatch: any, mutation: any
     loadingPageText: stateReducer.loading.loadingPageText,
     hitSaveBiometricIdMutation: mutation.hitSaveBiometricId,
     hitPresenceMutation: mutation.hitPresenceMutation,
+    setLoadingPage: (isActive: boolean, text: string) => dispatch(
+        loadingPageAction(isActive, text)
+    ),
     setBiometricIdDispatch: (id: string) => dispatch(setBiometricIdAction(id)),
 });
 

@@ -34,9 +34,11 @@ const {
 
 const useHookContainerState = (): HookContainerState => {
   const [containerState, setContainerState] = useState({
-    backgroundColor: Colors.white, barColor: Colors.primary,
-    barType: Colors.barLightStyle, withOverlayLoading: false,
-    loadingText: 'Loading', showToast: false, toastSww: false,
+    backgroundColor: Colors.white,
+    barColor: Colors.primary,
+    barType: Colors.barLightStyle,
+    showToast: false,
+    toastSww: false,
     toastTopOffset: scaleHeight(24),
     toastType: 'error',
     toastTitle: 'Title',
@@ -93,36 +95,18 @@ const _useHookLocation = (): HookLocationState => {
   return {location, setLocation};
 };
 
-const _handleLoadingOverlay = (
-  hookContainer: HookContainerState,
-  isActive: boolean,
-  loadingText: string
-) => {
-  const {containerState, setContainerState} = hookContainer;
-  setTimeout(() => {
-    setContainerState({
-      ...containerState,
-      withOverlayLoading: isActive,
-      loadingText,
-    });
-  }, 500);
-};
-
 const _getLocationEffect = (props: Props, setLocation: any) => {
-  React.useEffect(() => {
-    Geolocation.getCurrentPosition(
-      position => {
-        const {latitude, longitude} = position.coords;
-        setLocation({ latitude: latitude, longitude: longitude });
-      },
-      () => {
-        Alert.alert('Oops', 'Masalah dalam mengambil titik lokasi anda!');
-        props.navigation.goBack();
-      },
-      {enableHighAccuracy: false, timeout: 20000, maximumAge: 1000},
-    );
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [setLocation]);
+  Geolocation.getCurrentPosition(
+    position => {
+      const {latitude, longitude} = position.coords;
+      setLocation({ latitude: latitude, longitude: longitude });
+    },
+    () => {
+      Alert.alert('Oops', 'Masalah dalam mengambil titik lokasi anda!');
+      props.navigation.goBack();
+    },
+    {enableHighAccuracy: false, timeout: 20000, maximumAge: 10000},
+  );
 };
 
 const _handleChecKey = () => {
@@ -139,52 +123,70 @@ const _handleChecKey = () => {
   return checkKeyPromise;
 };
 
+const _handleDeleteKey = () => {
+  console.log('_handleDeleteKey');
+  ReactNativeBiometrics.deleteKeys()
+  .then((resultObject) => {
+      const { keysDeleted } = resultObject;
+      if (keysDeleted) {
+          console.log('Successful delete key');
+      } else {
+          console.log('Unsuccessful deletion because there were no keys to delete');
+      }
+  });
+};
+
+// eslint-disable-next-line max-lines-per-function
 const _handlResponseBiometric = (biometricProps: BiometricProps, publicKey: string, response: any) => {
   const { setBiometricIdDispatch, navigation } = biometricProps.primaryProps;
+  const { setLocation } = biometricProps.hookLocation;
   if (response?.data){
     if (response?.data?.success){
       _showToastHandle(biometricProps, SUCCESS, REGIS_BIOMETRIC_SUCCESS, response?.data?.message);
       setBiometricIdDispatch(publicKey);
+      _getLocationEffect(biometricProps.primaryProps, setLocation);
     } else {
       _showToastHandle(biometricProps, ERROR, REGIS_BIOMETRIC_FAILED, response?.data?.message);
-      setTimeout(() => navigation.goBack(), 250);
+      _handleDeleteKey(); setTimeout(() => navigation.goBack(), 250);
     }
   } else {
     _toastSwwHandle(biometricProps);
-    setTimeout(() => navigation.goBack(), 500);
+    _handleDeleteKey();
+    setTimeout(() => navigation.goBack(), 250);
   }
 };
 
 const _sendBiometricIdToServer = async (biometricProps: BiometricProps, publicKey: string) => {
-  console.log('send biometric server');
-  const { hitSaveBiometricIdMutation} = biometricProps.primaryProps;
+  console.log('_sendBiometricIdToServer', 'Send biometric to server');
+  const { hitSaveBiometricIdMutation, setLoadingPage} = biometricProps.primaryProps;
   const response = await hitSaveBiometricIdMutation.mutateAsync(publicKey);
   await _handlResponseBiometric(biometricProps, publicKey, response);
-  _handleLoadingOverlay(biometricProps.hookContainer, false, 'close');
+  setLoadingPage(false, 'close');
 };
 
 const _handleCreateKeys = (biometricProps: BiometricProps) => {
-  console.log('handle create keys');
-  _handleLoadingOverlay(biometricProps.hookContainer, true, ON_REGISTER_BIOMETRIC);
+  const { setLoadingPage } = biometricProps.primaryProps;
+  console.log('_handleCreateKeys', 'handle create keys');
   ReactNativeBiometrics.createKeys()
   .then((resultObject) => {
       const { publicKey } = resultObject;
-      setTimeout(() => {
-        _sendBiometricIdToServer(biometricProps, publicKey);
-      },1000);
+      _sendBiometricIdToServer(biometricProps, publicKey);
   }).catch(error => {
-      _handleLoadingOverlay(biometricProps.hookContainer, false, 'close');
+      setLoadingPage(true, 'close');
       Alert.alert(FAILED_CONFIG, ERROR_GET_BIOMETRIC_ID);
       console.log('Create Keys Error: ' + error);
   });
 };
 
 const _handleBiometricSupport = (biometricProps: BiometricProps) => {
+  const { setLoadingPage } = biometricProps.primaryProps;
+  const { setLocation } = biometricProps.hookLocation;
   _handleChecKey().then(() => {
-    console.log('Key Not Exists, next get key & save biometric id to server');
-    _handleCreateKeys(biometricProps);
+    setLoadingPage(true, ON_REGISTER_BIOMETRIC);
+    setTimeout(() => _handleCreateKeys(biometricProps), 500);
+    console.log('_handleBiometricSupport', 'Key Not Exists, next get key & save biometric id to server');
   }).catch(error => {
-    _handleLoadingOverlay(biometricProps.hookContainer, false, 'close');
+    _getLocationEffect(biometricProps.primaryProps, setLocation);
     console.log('PresenceScreen._handleBiometricSupport', error);
   });
 };
@@ -234,14 +236,18 @@ const _renderMapLoading = () => (
   </View>
 );
 
+// const _handleHitBiometric = () => {
+//   alert('handle biometric');
+// };
+
 const _renderIconBiometricTrue = (props: Props, location: LocationState, logo1: any) => (
   <React.Fragment>
     <TouchableOpacity>
       {location.latitude !== 0 && <Image source={logo1} style={styles.biometricLogo} />}
     </TouchableOpacity>
     <CText semiBold>
-    {location.latitude !== 0 && 'Sentuh ikon sidik jari untuk memulai absen'}
-    {location.latitude === 0 && 'Sedang memuat peta...'}
+      {location.latitude !== 0 && 'Sentuh ikon sidik jari untuk memulai absen'}
+      {location.latitude === 0 && 'Sedang Memuat Peta'}
     </CText>
   </React.Fragment>
 );
@@ -316,8 +322,8 @@ const getContainerProps = (props: Props, containerState: ContainerState) => ({
   backgroundColor: containerState.backgroundColor,
   barColor: containerState.barColor,
   barType: containerState.barType,
-  withOverlayLoading: containerState.withOverlayLoading,
-  loadingText: containerState.loadingText,
+  withOverlayLoading: props.loadingPage,
+  loadingText: props.loadingPageText,
   headerTitle: _getTitleHeader(props.route.params.type),
   headerLeftIconOnPress: props.navigation.goBack,
   showToast: containerState.showToast,
@@ -330,26 +336,27 @@ const getContainerProps = (props: Props, containerState: ContainerState) => ({
 
 const _setBiometricProps = (
   props: Props, hookContainer: HookContainerState,
-  useHookBiometricSupport: HookBiometricState
+  useHookBiometricSupport: HookBiometricState,
+  hookLocation: HookLocationState
 ) => ({
   primaryProps: props,
   hookContainer,
   hookBiometric: useHookBiometricSupport,
+  hookLocation,
 });
 
 // eslint-disable-next-line max-lines-per-function
 const PresenceScreenComponent = (props: Props) => {
   const hookContainer = useHookContainerState();
-  const {location, setLocation} = _useHookLocation();
+  const hookLocation = _useHookLocation();
   const hookBiometricSupport = _useHookBiometricSupport();
-  const biometricProps = _setBiometricProps(props, hookContainer, hookBiometricSupport);
+  const biometricProps = _setBiometricProps(props, hookContainer, hookBiometricSupport, hookLocation);
   _registerBiometricEffect(biometricProps);
-  _getLocationEffect(props, setLocation);
   _useShowToastHideEffect(hookContainer);
   return (
     <Container {...getContainerProps(props, hookContainer.containerState)}>
       <View style={styles.contentContainer}>
-        {_renderContent(props, location, hookBiometricSupport.isBiometricSupport)}
+        {_renderContent(props, hookLocation.location, hookBiometricSupport.isBiometricSupport)}
       </View>
       {_renderFooterButton()}
     </Container>
