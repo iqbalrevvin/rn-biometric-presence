@@ -15,6 +15,11 @@ export default {
             INFO_4: 'Pastikan login dengan akun anda sendiri di saat pendaftaran ID Biometrik perangkat',
         },
         MAPS_LOADING: 'Memuat Peta',
+        SHOULD_LOADING_MAPS: 'Sedang Memuat Peta',
         BIOMETRIC_NO_SUPPORT: 'Biometrik sidik jari tidak support untuk perangkat ini',
+        TOUCH_ICON: 'Sentuh ikon sidik jari untuk memulai absen',
+        DELETE_DEVICE_KEY: 'HAPUS KUNCI PERANGKAT',
+        CLOCK_IN: 'Absen Masuk',
+        CLOCK_OUT: 'Absen Keluar',
     },
 };

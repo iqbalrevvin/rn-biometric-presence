@@ -76,30 +76,40 @@ const _renderTimeSection = (props: HeaderSectionProps) => {
   );
 };
 
-const _renderCardNameInfo = () => (
-  <View style={styles.cardNameInfo}>
-    <CText color={Colors.grey800} bold size={15}>
-      Hi, Iqbal Revvin
-    </CText>
-    <CText color={Colors.grey800} bold size={13}>
-      Digital Banking Developer
-    </CText>
-  </View>
+const _renderCardNameInfo = (props: HeaderSectionProps) => {
+  const { profileState } = props.primaryProps;
+  return (
+    <View style={styles.cardNameInfo}>
+      <CText color={Colors.grey800} bold size={15}>
+        Hi, {profileState.fullname}
+      </CText>
+      <CText color={Colors.grey800} bold size={13}>
+        {profileState.divisionName}
+      </CText>
+    </View>
+  );
+};
+
+const _renderWorkHoursTextInfo = (type: string, hours1: string, hours2: string) => (
+  <CText color={Colors.grey700} bold size={14}>
+    {type} : {hours1} - {hours2}
+  </CText>
 );
 
-const _renderCardShiftInfo = () => (
-  <View style={styles.cardShiftInfo}>
-    <CText color={Colors.grey700} bold size={16}>
-      Non Shift
-    </CText>
-    <CText color={Colors.grey700} bold size={14}>
-      Jam Masuk : 07:00:00 - 08:00:00
-    </CText>
-    <CText color={Colors.grey700} bold size={14}>
-      Jam Pulang : 17:00:00 - 18:00:00
-    </CText>
-  </View>
-);
+const _renderCardShiftInfo = (props: HeaderSectionProps) => {
+  const {
+    profileState: {workHoursInStart, workHoursInEnd, workHoursOutStart, workHoursOutEnd},
+  } = props.primaryProps;
+  return (
+    <View style={styles.cardShiftInfo}>
+      <CText color={Colors.grey700} bold size={16}>
+        {props.primaryProps.profileState.workHoursName}
+      </CText>
+      {_renderWorkHoursTextInfo('Jam Masuk', workHoursInStart, workHoursInEnd)}
+      {_renderWorkHoursTextInfo('Jam Pulang', workHoursOutStart, workHoursOutEnd)}
+    </View>
+  );
+};
 
 const _renderButtonAction = (title: string, onNavigate: () => void) => (
   <View style={styles.buttonPresenceSection}>
@@ -129,8 +139,8 @@ const _renderButtonPresence = (props: HeaderSectionProps) => {
 
 const _renderInfoActionCard = (props: HeaderSectionProps) => (
   <View style={styles.infoActionCard}>
-    {_renderCardNameInfo()}
-    {_renderCardShiftInfo()}
+    {_renderCardNameInfo(props)}
+    {_renderCardShiftInfo(props)}
     <CGap height={10} />
     <Divider orientation="horizontal" />
     <CGap height={20} />

@@ -28,7 +28,8 @@ const {
   TEXT: {
     ATTENDANCE_TITLE, SUCCESS, ERROR, ON_REGISTER_BIOMETRIC, FAILED_CONFIG,
     ERROR_GET_BIOMETRIC_ID, REGIS_BIOMETRIC_SUCCESS, REGIS_BIOMETRIC_FAILED,
-    INFO_DESCRIPTION, MAPS_LOADING, BIOMETRIC_NO_SUPPORT,
+    INFO_DESCRIPTION, MAPS_LOADING, BIOMETRIC_NO_SUPPORT, DELETE_DEVICE_KEY,
+    CLOCK_IN, CLOCK_OUT,
   },
 } = presenceConstant;
 
@@ -105,7 +106,7 @@ const _getLocationEffect = (props: Props, setLocation: any) => {
       Alert.alert('Oops', 'Masalah dalam mengambil titik lokasi anda!');
       props.navigation.goBack();
     },
-    {enableHighAccuracy: false, timeout: 20000, maximumAge: 10000},
+    {enableHighAccuracy: false, timeout: 20000, maximumAge: 2500},
   );
 };
 
@@ -236,13 +237,22 @@ const _renderMapLoading = () => (
   </View>
 );
 
-// const _handleHitBiometric = () => {
-//   alert('handle biometric');
-// };
+const _handleTouchFingerPrint = (props: Props) => {
+  const paramName = props.route.params.type === 'clockIn' ? CLOCK_IN : CLOCK_OUT;
+  ReactNativeBiometrics.createSignature({
+    promptMessage: `${paramName}\nTempelkan jari ke sensor`,
+    payload: 'payload data',
+  }).then((resultObject) => {
+      const { success, signature } = resultObject;
+      if (success) {
+          console.log('_handleHitBiometric', signature);
+      }
+  }).catch(err => console.log('_handleHitBiometric', err));
+};
 
 const _renderIconBiometricTrue = (props: Props, location: LocationState, logo1: any) => (
   <React.Fragment>
-    <TouchableOpacity>
+    <TouchableOpacity onPress={() => _handleTouchFingerPrint(props)}>
       {location.latitude !== 0 && <Image source={logo1} style={styles.biometricLogo} />}
     </TouchableOpacity>
     <CText semiBold>
@@ -305,7 +315,7 @@ const _renderFooterButton = () => (
   <View style={styles.buttonFooterContainer}>
     <CButtonRegular
       titleBold
-      title={'HAPUS KUNCI PERANGKAT'}
+      title={DELETE_DEVICE_KEY}
       color={Colors.accent4}
     />
   </View>

@@ -46,7 +46,7 @@ const Container = (props: ContainerProps) => {
         text1: toastSww ? toastSwwText.title : toastTitle,
         text2: toastSww ? toastSwwText.subtitle : toastSubTitle,
         topOffset: toastTopOffset || 0,
-        visibilityTime: 2500,
+        visibilityTime: 3000,
       });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
