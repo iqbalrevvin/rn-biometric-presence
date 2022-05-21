@@ -4,24 +4,26 @@ import { View } from 'react-native';
 import styles from './CCard.styles';
 import Configs from './CCard.config';
 import { Colors } from '../../Utility';
+import { Props } from './CCard.types';
 
-const renderLiniarProgress = (borderRadius) => (
+const renderLiniarProgress = (borderRadius: number|any) => (
   <View style={styles.liniarProgressContainer}>
     <LinearProgress
       color={Colors.primary}
       style={styles.liniarProgressSection(borderRadius)}
-        />
+    />
   </View>
 );
 
-const CCard = ({
-    children, borderRadius, borderWidth, elevation, loading,
-}) => (
-  <Card containerStyle={styles.container(borderRadius, borderWidth, elevation)}>
-    {loading && renderLiniarProgress(borderRadius)}
-    {children}
-  </Card>
-);
+const CCard = (props: Props) => {
+  const { children, borderRadius, borderWidth, elevation, loading } = props;
+  return (
+    <Card containerStyle={styles.container(borderRadius, borderWidth, elevation)}>
+      {loading && renderLiniarProgress(borderRadius)}
+      {children}
+    </Card>
+  );
+};
 
 CCard.defaultProps = Configs.defaultProps;
 CCard.propTypes = Configs.propTypes;

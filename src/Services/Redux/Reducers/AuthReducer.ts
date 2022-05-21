@@ -5,7 +5,7 @@ const initialState = {
     token: null,
 };
 
-const _loginAction = (state: any, payload: any) => ({
+const _loginAction = (state: any, payload: string) => ({
     ...state,
     loggedIn: true,
     token: payload,

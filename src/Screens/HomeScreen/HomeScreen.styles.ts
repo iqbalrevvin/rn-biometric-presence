@@ -1,7 +1,5 @@
-import { Dimensions, ImageStyle, StyleSheet, ViewStyle } from 'react-native';
+import { ImageStyle, StyleSheet, ViewStyle } from 'react-native';
 import Colors from '~Utility/Colors';
-
-const { width } = Dimensions.get('window');
 
 interface Styles {
     headerContainer: ViewStyle;
@@ -29,18 +27,18 @@ const styles = StyleSheet.create<Styles>({
         borderBottomLeftRadius: 50,
         borderBottomRightRadius: 50,
         opacity: 0.5,
-        bottom: width / 5,
     },
     timeContainer: {
-        marginTop: 15,
+        bottom: 10,
         alignItems: 'center',
         justifyContent: 'center',
     },
     infoActionCard: {
         backgroundColor: Colors.white,
-        margin: 10,
+        marginHorizontal: 10,
         padding: 10,
         borderRadius: 5,
+        bottom: 15,
     },
     cardNameInfo: {
         alignItems: 'center',

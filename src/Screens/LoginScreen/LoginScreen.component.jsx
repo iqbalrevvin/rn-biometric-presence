@@ -157,7 +157,8 @@ const renderForm = (props) => (
       {renderInputPassword(props)}
     </FormProvider>
     <View style={styles.forgotPasswordSection}>
-      <TouchableOpacity>
+      <TouchableOpacity
+        onPress={() => showToastHandle(props, 'info', 'Oops..', 'Maaf, Fitur belum tersedia 🙏🏻')}>
         <CText color={Colors.primary} size={14}>Forgot Password?</CText>
       </TouchableOpacity>
     </View>

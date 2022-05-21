@@ -6,6 +6,7 @@ export interface ContainerProps {
     barType?: any;
     showToast?: boolean;
     toastSww?: boolean;
+    toastTopOffset?: number;
     toastType?: string;
     toastTitle?: string;
     toastSubTitle?: string;
@@ -13,14 +14,24 @@ export interface ContainerProps {
     loadingText?: string;
     scrollView?: boolean;
     backgroundColor?: any;
+    headerColor?: string;
+    headerTitle?: string;
+    headerLeftIcon?: string;
+    headerLeftIconOnPress?: () => void;
+    headerRightIcon?: string;
+    headerRightIconOnPress?: () => void;
 }
 
 export interface ContainerState {
     backgroundColor: string;
     barColor: string;
     barType: string;
-    withOverlayLoading: boolean;
-    loadingText: string;
+    showToast: boolean;
+    toastSww: boolean;
+    toastTopOffset: number;
+    toastType: string;
+    toastTitle: string;
+    toastSubTitle: string;
 }
 
 type ContainerStateSetter = React.Dispatch<React.SetStateAction<ContainerState>>;

@@ -10,21 +10,17 @@ export interface Props {
 }
 
 interface ProfileStateType {
-    nama_lengkap: string;
+    fullname: string;
     email: string;
-    no_telp: string;
-    divisi_id: number;
-    divisi: {
-        nama: string;
-    };
-    jam_kerja_id: number;
-    jam_kerja: {
-        nama: string;
-        jam_masuk_mulai: string;
-        jam_masuk_selesai: string;
-        jam_pulang_mulai: string;
-        jam_pulang_selesai: string;
-    };
+    phone: string;
+    divisionId: number;
+    divisionName: string;
+    workHoursId: number;
+    workHoursName: string;
+    workHoursInStart: string;
+    workHoursInEnd: string;
+    workHoursOutStart: string;
+    workHoursOutEnd: string;
 }
 
 export interface UseQueryProps {

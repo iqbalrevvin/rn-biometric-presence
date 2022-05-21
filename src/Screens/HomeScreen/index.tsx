@@ -40,13 +40,13 @@ const _useFetchingQuery = (stateReducer: any) => {
 const HomeScreen = (props: IndexProps) => {
   const stateReducer = useSelector((state: RootStateOrAny) => state);
   const {
-      data, refetch, hasNextPage, fetchNextPage, isFetching,
-      isFetchingNextPage, isLoading, status, error,
-    } = _useFetchingQuery(stateReducer);
+    data, refetch, hasNextPage, fetchNextPage, isFetching,
+    isFetchingNextPage, isLoading, status, error,
+  } = _useFetchingQuery(stateReducer);
   const useQueryProps = {
-      data, refetch, hasNextPage, fetchNextPage, isFetching,
-      isFetchingNextPage, isLoading, status, error,
-    };
+    data, refetch, hasNextPage, fetchNextPage, isFetching,
+    isFetchingNextPage, isLoading, status, error,
+  };
   return (
     <HomeScreenComponent {..._getHomeScreenProps(props, stateReducer, useQueryProps)}
     />
