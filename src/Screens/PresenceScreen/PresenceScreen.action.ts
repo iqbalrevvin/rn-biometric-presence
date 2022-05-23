@@ -1,5 +1,5 @@
 import API, { ENDPOINT } from '~Services/Configs/Api';
-import { dataSaveBiometric, DataSubmitHitPresence } from './PresenceScreen.type';
+import { DataSubmitHitPresence, PayloadSendBiometric } from './PresenceScreen.type';
 import { Store } from '../../Services/Redux/store';
 
 const {
@@ -8,8 +8,8 @@ const {
 
 const state = Store.getState();
 
-export const saveBiometricId = async (data: dataSaveBiometric) => {
-    const dataSend = { biometric_id: data };
+export const saveBiometricId = async (payload: PayloadSendBiometric) => {
+    const dataSend = payload;
     try {
         const config = {
             headers: {
