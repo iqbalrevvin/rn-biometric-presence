@@ -27,7 +27,7 @@ const screenOptionsConfig = ({ route }) => ({
               name={iconName}
               size={size}
               style={styles.tabIconSection(focused, size, color)}
-                />
+            />
           </View>
         );
     },
@@ -57,6 +57,11 @@ const TabNavigator = (props) => (
     <Tab.Screen
       name={Screen.HOME_SCREEN.name}
       component={Screen.HOME_SCREEN.component}
+      {...props}
+    />
+    <Tab.Screen
+      name={Screen.PROFILE_SCREEN.name}
+      component={Screen.PROFILE_SCREEN.component}
       {...props}
     />
   </Tab.Navigator>

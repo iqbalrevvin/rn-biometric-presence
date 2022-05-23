@@ -2,6 +2,7 @@ const Colors = {
     primary: '#005CEE',
     white: 'white',
     black: 'black',
+    transparent: 'transparent',
     grey100: '#F7F9FC',
     grey200: '#EEF2F8',
     grey300: '#DCE1EA',

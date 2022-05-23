@@ -1,5 +1,5 @@
 import React, {Fragment, ReactNode} from 'react';
-import {ScrollView, StatusBar, View} from 'react-native';
+import {SafeAreaView, ScrollView, StatusBar, View} from 'react-native';
 import PropTypes from 'prop-types';
 import Toast from 'react-native-toast-message';
 import styles from './Container.styles';
@@ -58,13 +58,13 @@ const Container = (props: ContainerProps) => {
         backgroundColor={props.barColor}
         barStyle={props.barType}
       />
-      <View style={[props.style, styles.container(props.backgroundColor)]}>
+      <SafeAreaView style={[props.style, styles.container(props.backgroundColor)]}>
         {props.withOverlayLoading && (
           <CLoadingOverlay loadingText={props.loadingText} />
         )}
         {headerTitle && <CHeader {..._getHeaderProps(props)} />}
         {_renderContent(props.scrollView, props.children)}
-      </View>
+      </SafeAreaView>
     </Fragment>
   );
 };

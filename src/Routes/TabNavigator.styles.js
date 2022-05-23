@@ -5,6 +5,7 @@ export default {
     tabIconSection: (focused, size, color) => ({
         color: focused ? color : 'gray',
         fontWeight: 'bold',
-        fontSize: focused ? size : null,
+        fontSize: focused ? 28 : 24,
+        marginTop: -5,
     }),
 };
