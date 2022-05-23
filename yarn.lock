@@ -6872,6 +6872,11 @@ react-native-config@^1.4.5:
   resolved "https://nxrm.jenius.tech/repository/npm-group/react-native-config/-/react-native-config-1.4.5.tgz#6fe5895410b75e44fe4f4bf00caaf894a0981f3a"
   integrity sha512-5oiAsoW88SOYDg/0cleJ2vJDqv98FJUbFQYEnH4sdMtEn3AAT3lb7BkTGW8HO/t3Vk9VOruwxUUnO4tzuxzCsw==
 
+react-native-device-info@^8.7.1:
+  version "8.7.1"
+  resolved "https://nxrm.jenius.tech/repository/npm-group/react-native-device-info/-/react-native-device-info-8.7.1.tgz#fbb06f87dbbc4423abe713874699fb2e6e99fd15"
+  integrity sha512-cVMZztFa2Qn6qpQa601W61CtUwZQ1KXfqCOeltejAWEXmgIWivC692WGSdtGudj4upSi1UgMSaGcvKjfcpdGjg==
+
 react-native-dotenv@^3.3.1:
   version "3.3.1"
   resolved "https://nxrm.jenius.tech/repository/npm-group/react-native-dotenv/-/react-native-dotenv-3.3.1.tgz#8f399cf28ca77d860d8e7f7323e439fa60a8ca0b"
