@@ -16,9 +16,9 @@ const renderLiniarProgress = (borderRadius: number|any) => (
 );
 
 const CCard = (props: Props) => {
-  const { children, borderRadius, borderWidth, elevation, loading } = props;
+  const { children, borderRadius, borderWidth, elevation, loading, style } = props;
   return (
-    <Card containerStyle={styles.container(borderRadius, borderWidth, elevation)}>
+    <Card containerStyle={[style, styles.container(borderRadius, borderWidth, elevation)]}>
       {loading && renderLiniarProgress(borderRadius)}
       {children}
     </Card>

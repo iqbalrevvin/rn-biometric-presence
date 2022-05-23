@@ -6,4 +6,5 @@ export interface Props {
     borderWidth?: number;
     elevation?: number;
     loading?: boolean;
+    style?: any;
 }
