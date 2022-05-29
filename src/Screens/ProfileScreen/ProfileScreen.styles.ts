@@ -1,4 +1,4 @@
-import { ImageStyle, StatusBar, StyleSheet, ViewStyle } from 'react-native';
+import { ImageStyle, StyleSheet, ViewStyle } from 'react-native';
 import { scaleHeight, scaleSize } from '~Utility/Size';
 import Colors from '../../Utility/Colors';
 
@@ -12,6 +12,7 @@ interface Styles {
     iconConfigContainer: ViewStyle;
     renderInfoContainer: ViewStyle;
     infoProfileSection: ViewStyle;
+    descSection: ViewStyle;
     buttonLogoutContainer: ViewStyle;
 }
 
@@ -49,9 +50,14 @@ const styles = StyleSheet.create<Styles>({
         marginTop: scaleHeight(10),
     },
     infoProfileSection: {
+        alignItems: 'center',
         flexDirection: 'row',
         justifyContent: 'space-between',
         marginTop: scaleHeight(10),
+    },
+    descSection: {
+        width: '45%',
+        textAlign: 'left',
     },
     buttonLogoutContainer: {
         margin: scaleSize(13),

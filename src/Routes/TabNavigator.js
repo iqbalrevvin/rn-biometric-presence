@@ -62,6 +62,7 @@ const TabNavigator = (props) => (
     <Tab.Screen
       name={Screen.PROFILE_SCREEN.name}
       component={Screen.PROFILE_SCREEN.component}
+      options={{ unmountOnBlur: true }}
       {...props}
     />
   </Tab.Navigator>

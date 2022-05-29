@@ -23,7 +23,7 @@ import CCard from '~Components/CCard';
 import CGap from '~Components/CGap';
 import { scaleFont, scaleHeight } from '~Utility/Size';
 import presenceConstant from './PresenceScreen.constant';
-import { getAndroidId, getAndroidIdSync, getBaseOs, getBrand, getDevice, getDeviceId, getDeviceName, getDeviceNameSync, getDeviceToken } from 'react-native-device-info';
+import { getAndroidIdSync, getBrand, getDeviceNameSync } from 'react-native-device-info';
 
 const {
   TEXT: {

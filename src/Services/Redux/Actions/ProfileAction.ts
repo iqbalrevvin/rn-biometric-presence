@@ -3,9 +3,12 @@ import Action from '../ConstantReducer';
 interface PayloadProfileAction {
     profile: {
         nama_lengkap: string;
+        jenis_kelamin: string;
         email: string;
         no_telp: string;
         divisi_id: number;
+        device_id: string;
+        device_name: string;
         divisi: {
             nama: string;
         };
@@ -25,8 +28,11 @@ export const setProfileAction = (payload: PayloadProfileAction) => ({
     type: Action.Profile.SET_PROFILE,
     payload: {
         fullname: payload.profile.nama_lengkap,
+        gender: payload.profile.jenis_kelamin,
         email: payload.profile.email,
         phone: payload.profile.no_telp,
+        deviceId: payload.profile.device_id,
+        deviceName: payload.profile.device_name,
         divisionId: payload.profile.divisi_id,
         divisionName: payload.profile.divisi.nama,
         workHoursId: payload.profile.jam_kerja_id,

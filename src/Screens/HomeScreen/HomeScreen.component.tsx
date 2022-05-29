@@ -203,7 +203,7 @@ const _renderItemList = ({item}: any) => (
 
 const _getOutputData = (attendanceQuery: UseQueryProps) => {
   const outputData = attendanceQuery?.data?.pages.map(
-    (page: any)=> page?.output_data?.data
+  (page: any)=> page?.output_data?.data
   ).flat();
   const result = outputData ? outputData : [];
   return result;
