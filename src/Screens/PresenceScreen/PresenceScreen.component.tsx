@@ -23,6 +23,7 @@ import CCard from '~Components/CCard';
 import CGap from '~Components/CGap';
 import { scaleFont, scaleHeight } from '~Utility/Size';
 import presenceConstant from './PresenceScreen.constant';
+import { getAndroidIdSync, getBrand, getDeviceNameSync } from 'react-native-device-info';
 
 const {
   TEXT: {
@@ -159,8 +160,13 @@ const _handlResponseBiometric = (biometricProps: BiometricProps, publicKey: stri
 
 const _sendBiometricIdToServer = async (biometricProps: BiometricProps, publicKey: string) => {
   console.log('_sendBiometricIdToServer', 'Send biometric to server');
+  const payload = {
+    biometric_id: publicKey,
+    device_id: getAndroidIdSync(),
+    device_name: `${getBrand()} - ${getDeviceNameSync()}`,
+  };
   const { hitSaveBiometricIdMutation, setLoadingPage} = biometricProps.primaryProps;
-  const response = await hitSaveBiometricIdMutation.mutateAsync(publicKey);
+  const response = await hitSaveBiometricIdMutation.mutateAsync(payload);
   await _handlResponseBiometric(biometricProps, publicKey, response);
   setLoadingPage(false, 'close');
 };
@@ -211,9 +217,9 @@ const _registerBiometricEffect = (biometricProps: BiometricProps) => {
 
 const _getTitleHeader = (type: string) => {
   switch (type) {
-    case 'clockIn':
+    case 'ClockIn':
       return 'Clock In';
-    case 'clockOut':
+    case 'ClockOut':
       return 'Clock Out';
     default:
       return 'Presence';
@@ -226,19 +232,23 @@ const _renderMapsView = (location: LocationState) => (
   </View>
 );
 
-const _renderMapLoading = () => (
-  <View style={styles.mapViewContainer}>
-    <View style={styles.loadingMapContainer}>
-      <CGap height={50} />
-      <ActivityIndicator size={'large'} color={Colors.accent5} />
-      <CGap height={15} />
-      <CText semiBold>{MAPS_LOADING}</CText>
-    </View>
-  </View>
+const _renderMapLoading = (isBiometricSupport: Boolean) => (
+  <React.Fragment>
+    {isBiometricSupport && (
+      <View style={styles.mapViewContainer}>
+        <View style={styles.loadingMapContainer}>
+          <CGap height={50} />
+          <ActivityIndicator size={'large'} color={Colors.accent5} />
+          <CGap height={15} />
+          <CText semiBold>{MAPS_LOADING}</CText>
+        </View>
+      </View>
+    )}
+  </React.Fragment>
 );
 
 const _handleTouchFingerPrint = (props: Props) => {
-  const paramName = props.route.params.type === 'clockIn' ? CLOCK_IN : CLOCK_OUT;
+  const paramName = props.route.params.type === 'ClockIn' ? CLOCK_IN : CLOCK_OUT;
   ReactNativeBiometrics.createSignature({
     promptMessage: `${paramName}\nTempelkan jari ke sensor`,
     payload: 'payload data',
@@ -323,7 +333,11 @@ const _renderFooterButton = () => (
 
 const _renderContent = (props: Props, location: LocationState, isBiometricSupport: boolean) => (
   <React.Fragment>
-    {location.latitude !== 0 ? _renderMapsView(location) : _renderMapLoading()}
+    {
+      location.latitude !== 0 ?
+      _renderMapsView(location) :
+      _renderMapLoading(isBiometricSupport)
+    }
     {_renderContentPresence(props, location, isBiometricSupport)}
   </React.Fragment>
 );

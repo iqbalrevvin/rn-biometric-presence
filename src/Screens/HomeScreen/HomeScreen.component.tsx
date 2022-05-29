@@ -127,11 +127,11 @@ const _renderButtonPresence = (props: HeaderSectionProps) => {
     <View style={styles.buttonPresenceContainer}>
       {_renderButtonAction(
         'CLOCK IN',
-        () => navigation.navigate(Screen.PRESENCE_SCREEN.name, {type: 'clockIn'})
+        () => navigation.navigate(Screen.PRESENCE_SCREEN.name, {type: 'ClockIn'})
       )}
       {_renderButtonAction(
         'CLOCK OUT',
-        () => navigation.navigate(Screen.PRESENCE_SCREEN.name, {type: 'clockOut'})
+        () => navigation.navigate(Screen.PRESENCE_SCREEN.name, {type: 'ClockOut'})
       )}
     </View>
   );
@@ -161,8 +161,8 @@ const _renderHeaderSection = (props: HeaderSectionProps) => {
   return (
     <View style={styles.headerContainer}>
       <CHeader {..._getHeaderComponentSection()} />
-      <Image style={styles.headerImageSection} source={bgImage2} />
       <CGap height={10} />
+      <Image style={styles.headerImageSection} source={bgImage2} />
       {_renderTimeSection(props)}
       <CGap height={20} />
       {_renderInfoActionCard(props)}
@@ -203,7 +203,7 @@ const _renderItemList = ({item}: any) => (
 
 const _getOutputData = (attendanceQuery: UseQueryProps) => {
   const outputData = attendanceQuery?.data?.pages.map(
-    (page: any)=> page?.output_data?.data
+  (page: any)=> page?.output_data?.data
   ).flat();
   const result = outputData ? outputData : [];
   return result;

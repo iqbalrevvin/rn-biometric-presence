@@ -4,6 +4,7 @@ import WelcomeScreen from '../Screens/WelcomeScreen';
 import HomeScreen from '../Screens/HomeScreen';
 import LoginScreen from '../Screens/LoginScreen';
 import PresenceScreen from '~Screens/PresenceScreen';
+import ProfileScreen from '~Screens/ProfileScreen';
 
 const Screen = {
     SPLASH_SCREEN: {
@@ -17,6 +18,10 @@ const Screen = {
     HOME_SCREEN: {
         name: 'Home',
         component: HomeScreen,
+    },
+    PROFILE_SCREEN: {
+        name: 'Profile',
+        component: ProfileScreen,
     },
     LOGIN_SCREEN: {
         name: 'Login',

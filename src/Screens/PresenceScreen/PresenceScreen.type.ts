@@ -42,8 +42,10 @@ export interface BiometricProps {
     hookLocation: HookLocationState
 }
 
-export interface dataSaveBiometric {
-    biometricId: string;
+export interface PayloadSendBiometric {
+    biometric_id: string;
+    device_id: string;
+    device_name: string;
 }
 
 export interface DataSubmitHitPresence {
