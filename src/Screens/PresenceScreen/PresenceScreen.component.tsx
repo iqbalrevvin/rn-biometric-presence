@@ -101,13 +101,15 @@ const _getLocationEffect = (props: Props, setLocation: any) => {
   Geolocation.getCurrentPosition(
     position => {
       const {latitude, longitude} = position.coords;
-      setLocation({ latitude: latitude, longitude: longitude });
+      setTimeout(() => setLocation({ latitude: latitude, longitude: longitude }),500); //delay for performance render (inline require)
     },
     () => {
-      Alert.alert('Oops', 'Masalah dalam mengambil titik lokasi anda!');
-      props.navigation.goBack();
+      Alert.alert(
+        'Problem In Get Location',
+        'Gagal mengambil lokasi, pastikan sudah memberikan akses lokasi dan internet anda stabil!'
+      ); props.navigation.goBack();
     },
-    {enableHighAccuracy: false, timeout: 20000, maximumAge: 2500},
+    {enableHighAccuracy: false, timeout: 10000},
   );
 };
 

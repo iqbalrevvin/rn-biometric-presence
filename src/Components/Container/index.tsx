@@ -1,5 +1,5 @@
 import React, {Fragment, ReactNode} from 'react';
-import {SafeAreaView, ScrollView, StatusBar, View} from 'react-native';
+import {SafeAreaView, ScrollView, StatusBar} from 'react-native';
 import PropTypes from 'prop-types';
 import Toast from 'react-native-toast-message';
 import styles from './Container.styles';
