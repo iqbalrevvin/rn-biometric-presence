@@ -21,5 +21,9 @@ export default {
         DELETE_DEVICE_KEY: 'HAPUS KUNCI PERANGKAT',
         CLOCK_IN: 'Absen Masuk',
         CLOCK_OUT: 'Absen Keluar',
+        VALIDATE_FINGERPRINT: 'Validasi Sidik Jari',
+        HIT_BIOMETRIC_SUCCESS: 'Absen Berhasil',
+        HIT_BIOMETRIC_FAILED: 'Absen Gagal',
+        HIT_BIOMETRIC_ERROR: 'Terjadi masalah saat absen',
     },
 };

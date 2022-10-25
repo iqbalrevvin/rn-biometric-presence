@@ -27,7 +27,7 @@ export const submitHitPresence = async (data: DataSubmitHitPresence) => {
     try {
         const config = {
             headers: {
-                Authorization: `Bearer ${state.auth.token}`,
+                Authorization: `Bearer ${data.token}`,
             },
         };
         const request = await API.post(HIT, data, config);

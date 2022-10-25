@@ -43,9 +43,17 @@ const CInput = ({
     };
 
     const handleRightIconProps = (password, iconName, iconColor) => {
-        if (!password) return { type: 'ant-design', name: iconName, color: iconColor };
+        if (!password)
         return {
-            type: 'ant-design', name: seePassword ? 'eyeo' : 'eye', color: iconColor, onPress: () => setSeePassword(!seePassword),
+            type: 'ant-design',
+            name: iconName,
+            color: iconColor,
+        };
+        return {
+            type: 'ant-design',
+            name: seePassword ? 'eyeo' : 'eye',
+            color: iconColor,
+            onPress: () => setSeePassword(!seePassword),
         };
     };
 
