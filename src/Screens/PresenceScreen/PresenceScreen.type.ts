@@ -6,6 +6,7 @@ export interface IndexProps {
 }
 
 export interface Props {
+    tokenAuth: string;
     navigation: any;
     route: any;
     loadingPage: boolean;
@@ -13,7 +14,9 @@ export interface Props {
     hitSaveBiometricIdMutation: any;
     hitPresenceMutation: any;
     setLoadingPage: any;
+    setLogout: any;
     setBiometricIdDispatch: any;
+    biometricId: string;
 }
 
 export interface BiometricState {
@@ -49,6 +52,7 @@ export interface PayloadSendBiometric {
 }
 
 export interface DataSubmitHitPresence {
+    token: string;
     biometric_id: string;
     tipe: string;
     latitude: number;

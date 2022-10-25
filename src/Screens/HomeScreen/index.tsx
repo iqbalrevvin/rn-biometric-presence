@@ -2,8 +2,8 @@ import React from 'react';
 import { RootStateOrAny, useSelector }  from 'react-redux';
 import { _getAttendanceLogs } from './HomeScreen.action';
 import { IndexProps, UseQueryProps } from './HomeScreen.type';
-import HomeScreenComponent from './HomeScreen.component';
 import { useInfiniteQuery } from 'react-query';
+import HomeScreenComponent from './HomeScreen.component';
 
 const _getHomeScreenProps = (
   props: IndexProps,

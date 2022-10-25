@@ -1,12 +1,12 @@
 import React, {useState} from 'react';
-import {View, Alert, Image, TouchableOpacity, ActivityIndicator} from 'react-native';
+import { View, Alert, Image, TouchableOpacity, ActivityIndicator } from 'react-native';
 import ReactNativeBiometrics from 'react-native-biometrics';
 import Container from '~Components/Container';
 import {
   ContainerState,
   HookContainerState,
 } from '~Components/Container/Container.type';
-import {Colors, Images} from '~Utility';
+import {Colors, Images, Screen} from '~Utility';
 import {
   BiometricProps,
   HookBiometricState,
@@ -30,7 +30,8 @@ const {
     ATTENDANCE_TITLE, SUCCESS, ERROR, ON_REGISTER_BIOMETRIC, FAILED_CONFIG,
     ERROR_GET_BIOMETRIC_ID, REGIS_BIOMETRIC_SUCCESS, REGIS_BIOMETRIC_FAILED,
     INFO_DESCRIPTION, MAPS_LOADING, BIOMETRIC_NO_SUPPORT, DELETE_DEVICE_KEY,
-    CLOCK_IN, CLOCK_OUT,
+    CLOCK_IN, CLOCK_OUT, VALIDATE_FINGERPRINT, HIT_BIOMETRIC_SUCCESS,
+    HIT_BIOMETRIC_FAILED, HIT_BIOMETRIC_ERROR,
   },
 } = presenceConstant;
 
@@ -101,13 +102,15 @@ const _getLocationEffect = (props: Props, setLocation: any) => {
   Geolocation.getCurrentPosition(
     position => {
       const {latitude, longitude} = position.coords;
-      setLocation({ latitude: latitude, longitude: longitude });
+      setTimeout(() => setLocation({ latitude: latitude, longitude: longitude }),500); //delay for performance render (inline require)
     },
     () => {
-      Alert.alert('Oops', 'Masalah dalam mengambil titik lokasi anda!');
-      props.navigation.goBack();
+      Alert.alert(
+        'Problem In Get Location',
+        'Gagal mengambil lokasi, pastikan sudah memberikan akses lokasi dan internet anda stabil!'
+      ); props.navigation.goBack();
     },
-    {enableHighAccuracy: false, timeout: 20000, maximumAge: 2500},
+    {enableHighAccuracy: false, timeout: 10000},
   );
 };
 
@@ -247,7 +250,53 @@ const _renderMapLoading = (isBiometricSupport: Boolean) => (
   </React.Fragment>
 );
 
-const _handleTouchFingerPrint = (props: Props) => {
+const _payloadHitPresence = (props: Props, location: LocationState) => {
+  const { biometricId, route: { params } } = props;
+  return {
+    biometric_id: biometricId,
+    tipe: params.type,
+    latitude: location.latitude,
+    longitude: location.longitude,
+    token: props.tokenAuth,
+  };
+};
+
+const _handleResponseHitBiometric = (props: Props, biometricProps: BiometricProps, response: any) => {
+  const success = response?.data?.success;
+  const message = response?.data?.message;
+  if (success){
+    _showToastHandle(biometricProps, SUCCESS, HIT_BIOMETRIC_SUCCESS, message);
+  } else {
+    _handleDeleteKey();
+    _showToastHandle(biometricProps, ERROR, HIT_BIOMETRIC_FAILED, message);
+    Alert.alert(ERROR, message);
+    props.setLogout();
+    props.navigation.replace(Screen.SPLASH_SCREEN.name);
+  }
+  props.navigation.goBack();
+};
+
+const _handleCatchErrorHitBiometric = (props: Props, biometricProps: BiometricProps) => {
+  _showToastHandle(biometricProps, ERROR, HIT_BIOMETRIC_FAILED, HIT_BIOMETRIC_ERROR);
+};
+
+const _handleHitBiometric = async (
+  props: Props, biometricProps: BiometricProps, location: LocationState
+) => {
+  const { setLoadingPage, hitPresenceMutation } = props;
+  setLoadingPage(true, VALIDATE_FINGERPRINT);
+  try {
+    const payload = _payloadHitPresence(props, location);
+    const response = await hitPresenceMutation.mutateAsync(payload);
+    if (response) _handleResponseHitBiometric(props, biometricProps, response);
+    else console.log(response);
+    setLoadingPage(false, null);
+  } catch (error) {
+    _handleCatchErrorHitBiometric(props, biometricProps);
+  }
+};
+
+const _handleTouchFingerPrint = (props: Props, biometricProps: BiometricProps, location: LocationState) => {
   const paramName = props.route.params.type === 'ClockIn' ? CLOCK_IN : CLOCK_OUT;
   ReactNativeBiometrics.createSignature({
     promptMessage: `${paramName}\nTempelkan jari ke sensor`,
@@ -255,14 +304,17 @@ const _handleTouchFingerPrint = (props: Props) => {
   }).then((resultObject) => {
       const { success, signature } = resultObject;
       if (success) {
+          _handleHitBiometric(props, biometricProps, location);
           console.log('_handleHitBiometric', signature);
       }
   }).catch(err => console.log('_handleHitBiometric', err));
 };
 
-const _renderIconBiometricTrue = (props: Props, location: LocationState, logo1: any) => (
+const _renderIconBiometricTrue = (
+  props: Props, biometricProps: BiometricProps, location: LocationState, logo1: any
+) => (
   <React.Fragment>
-    <TouchableOpacity onPress={() => _handleTouchFingerPrint(props)}>
+    <TouchableOpacity onPress={() => _handleTouchFingerPrint(props, biometricProps, location)}>
       {location.latitude !== 0 && <Image source={logo1} style={styles.biometricLogo} />}
     </TouchableOpacity>
     <CText semiBold>
@@ -284,13 +336,15 @@ const _renderBiometricFalse = (deniedImage: any) => (
   </React.Fragment>
 );
 
-const _renderTouchablePresence = (props: Props, location: LocationState, isBiometricSupport: boolean) => {
+const _renderTouchablePresence = (
+  props: Props, biometricProps: BiometricProps, location: LocationState, isBiometricSupport: boolean
+) => {
   const {logo1, deniedImage} = Images;
   return (
     <React.Fragment>
       {
         isBiometricSupport ?
-        _renderIconBiometricTrue(props, location, logo1) :
+        _renderIconBiometricTrue(props, biometricProps, location, logo1) :
         _renderBiometricFalse(deniedImage)
       }
     </React.Fragment>
@@ -309,13 +363,15 @@ const _renderInfoCardAttendance = () => (
   </CCard>
 );
 
-const _renderContentPresence = (props: Props, location: LocationState, isBiometricSupport: boolean) => (
+const _renderContentPresence = (
+  props: Props, biometricProps: BiometricProps, location: LocationState, isBiometricSupport: boolean
+) => (
   <View>
     <View style={styles.contentPresenceTitle}>
       <CText bold size={18} color={Colors.grey700}>
         {ATTENDANCE_TITLE}
       </CText>
-      {_renderTouchablePresence(props, location, isBiometricSupport)}
+      {_renderTouchablePresence(props, biometricProps, location, isBiometricSupport)}
       {_renderInfoCardAttendance()}
     </View>
   </View>
@@ -331,14 +387,16 @@ const _renderFooterButton = () => (
   </View>
 );
 
-const _renderContent = (props: Props, location: LocationState, isBiometricSupport: boolean) => (
+const _renderContent = (
+  props: Props, biometricProps: BiometricProps, location: LocationState, isBiometricSupport: boolean
+) => (
   <React.Fragment>
     {
       location.latitude !== 0 ?
       _renderMapsView(location) :
       _renderMapLoading(isBiometricSupport)
     }
-    {_renderContentPresence(props, location, isBiometricSupport)}
+    {_renderContentPresence(props, biometricProps, location, isBiometricSupport)}
   </React.Fragment>
 );
 
@@ -380,7 +438,9 @@ const PresenceScreenComponent = (props: Props) => {
   return (
     <Container {...getContainerProps(props, hookContainer.containerState)}>
       <View style={styles.contentContainer}>
-        {_renderContent(props, hookLocation.location, hookBiometricSupport.isBiometricSupport)}
+        {_renderContent(
+          props, biometricProps, hookLocation.location, hookBiometricSupport.isBiometricSupport
+        )}
       </View>
       {_renderFooterButton()}
     </Container>
